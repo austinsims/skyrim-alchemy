@@ -1,6 +1,6 @@
-import 'package:powerset/powerset.dart';
 import 'common.dart';
 import 'ingredients.dart';
+import 'subsets.dart' show subsets2or3;
 
 num sum(Iterable<num> numbers) {
   var v = 0;
@@ -42,10 +42,8 @@ class Potion {
   }
 }
 
-// Effects
 main() {
-  var allPotions = powerset(allIngredients)
-      .where((list) => list.length == 2 || list.length == 3)
+  var allPotions = subsets2or3(allIngredients)
       .map((list) => new Potion(new Set.from(list)))
       .where((potion) => potion.value() > 0)
       .toList();

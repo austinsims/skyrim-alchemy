@@ -8,4 +8,4 @@ environment:
   sdk: '>=1.0.0 <2.0.0'
 
 dependencies:
-  powerset: ^0.0.1
+  test: ^0.12.32
