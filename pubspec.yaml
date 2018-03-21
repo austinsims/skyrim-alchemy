@@ -1,0 +1,11 @@
+name: skyrim
+description: Skyrim potion calculator
+version: 0.0.1
+author: Austin Sims <adsims2001@gmail.com>
+homepage: https://www.github.com/austinsims
+
+environment:
+  sdk: '>=1.0.0 <2.0.0'
+
+dependencies:
+  powerset: ^0.0.1
