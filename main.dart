@@ -42,11 +42,17 @@ class Potion {
   }
 }
 
-main() {
+main(List<String> args) {
   var allPotions = subsets2or3(allIngredients)
       .map((list) => new Potion(new Set.from(list)))
       .where((potion) => potion.value() > 0)
       .toList();
   allPotions.sort((a, b) => b.value().compareTo(a.value()));
-  print(allPotions.join("\n"));
+
+  if (!args.isEmpty && args[0] == '-v') {
+    print(allPotions.join("\n"));
+  } else {
+    print("Found ${allPotions.length} potions from " +
+        "${allIngredients.length} ingredients");
+  }
 }
