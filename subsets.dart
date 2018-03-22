@@ -1,5 +1,5 @@
 // from https://gist.github.com/thmain/b574c5f0fc29c7698d65#file-allsubsetofsizek-java
-List<Set> subsetsOfSize(List<num> list, num size) {
+List<Set> subsetsOfSize(List list, num size) {
   List<Set> result = [];
   List<bool> used = new List.filled(list.length, false);
 
