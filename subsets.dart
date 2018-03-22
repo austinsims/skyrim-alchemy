@@ -23,13 +23,3 @@ List<Set> subsetsOfSize(List list, num size) {
   subsetsInternal(0, 0);
   return result;
 }
-
-main() {
-  List<num> list = ['a', 'b', 'c'];
-  // List<num> list = [];
-  var ss = subsetsOfSize(list, 2);
-  print('Found ${ss.length} sets');
-  for (var s in ss) {
-    print(s);
-  }
-}
