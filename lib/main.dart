@@ -22,12 +22,25 @@ class IngredientList extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<IngredientList> {
-  final _quantity = initQuantiyMap(allIngredients);
+  final _quantity = new Map<Ingredient, num>();
+
+  _MyHomePageState() {
+    _resetQuantities();
+  }
+
+  void _resetQuantities() {
+    initQuantiyMap(_quantity);
+  }
 
   @override
   Widget build(BuildContext context) => new Scaffold(
     appBar: new AppBar(
       title: new Text('Ingredients'),
+      actions: [
+        new IconButton(icon: new Icon(Icons.clear_all), onPressed: () {
+          setState(() { _resetQuantities(); });
+        }),
+      ],
     ),
     body: _buildIngredients(),
   );
@@ -64,10 +77,8 @@ class _MyHomePageState extends State<IngredientList> {
   }
 }
 
-Map<Ingredient, num> initQuantiyMap(List<Ingredient> ingredients) {
-  final map = new Map<Ingredient, num>();
-  for (var ingredient in ingredients) {
+void initQuantiyMap(Map<Ingredient, num> map) {
+  for (var ingredient in allIngredients) {
     map[ingredient] = 0;
   }
-  return map;
 }
