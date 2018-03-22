@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:skyrim_alchemy/alchemy/common.dart';
 import 'package:skyrim_alchemy/alchemy/ingredients.dart';
+import 'dart:math' show max;
 
 void main() => runApp(new MyApp());
 
@@ -21,6 +22,8 @@ class IngredientList extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<IngredientList> {
+  final _quantity = initQuantiyMap(allIngredients);
+
   @override
   Widget build(BuildContext context) => new Scaffold(
     appBar: new AppBar(
@@ -47,6 +50,24 @@ class _MyHomePageState extends State<IngredientList> {
   Widget _buildRow(Ingredient ingredient) {
     return new ListTile(
       title: new Text(ingredient.name),
+      trailing: new Row(children: [
+        new IconButton(icon: new Icon(Icons.remove), onPressed: () {
+          setState(() { _quantity[ingredient] = max(0, _quantity[ingredient] - 1); });
+        }),
+        // TODO: Use a text field so you can type in the number.
+        new Text(_quantity[ingredient].toString()),
+        new IconButton(icon: new Icon(Icons.add), onPressed: () {
+          setState(() { _quantity[ingredient] = _quantity[ingredient] + 1; });
+        }),
+      ]),
     );
   }
+}
+
+Map<Ingredient, num> initQuantiyMap(List<Ingredient> ingredients) {
+  final map = new Map<Ingredient, num>();
+  for (var ingredient in ingredients) {
+    map[ingredient] = 0;
+  }
+  return map;
 }
