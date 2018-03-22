@@ -1,61 +1,32 @@
-import 'common.dart';
+import 'package:args/args.dart';
 import 'ingredients.dart';
-import 'subsets.dart' show subsetsOfSize;
-
-num sum(Iterable<num> numbers) {
-  var v = 0;
-  for (num n in numbers) v += n;
-  return v;
-}
-
-class Potion {
-  Set<Ingredient> ingredients;
-  Potion(this.ingredients);
-
-  Set<Effect> effects() {
-    var allIngredientEffects = new Set.identity();
-    for (var ingredient in ingredients) {
-      allIngredientEffects = allIngredientEffects.union(ingredient.effects);
-    }
-
-    var effects = new Set.identity();
-    for (var effect in allIngredientEffects) {
-      var ingredientsWithEffect =
-          ingredients.where((i) => i.effects.contains(effect)).length;
-      if (ingredientsWithEffect >= 2) {
-        effects.add(effect);
-      }
-    }
-
-    return new Set.from(effects);
-  }
-
-  num value() => sum(effects().map((e) => e.value));
-
-  toString() {
-    num val = value();
-    String desc = effects().isEmpty
-        ? "Nothing"
-        : effects().map((e) => e.toString()).join(", ");
-    String ingredList = ingredients.join(", ");
-    return "\$${val} potion of ${desc} made with ${ingredList}";
-  }
-}
+import 'alchemy.dart';
+import 'dart:io';
 
 main(List<String> args) {
-  var subsets = subsetsOfSize(allIngredients, 2)
-    ..addAll(subsetsOfSize(allIngredients, 3));
+  var parser = new ArgParser();
+  parser.addFlag('verbose', abbr: 'v');
+  parser.addOption('num', abbr: 'n', defaultsTo: '10');
 
-  var allPotions = subsets
-      .map((list) => new Potion(new Set.from(list)))
-      .where((potion) => potion.value() > 0)
-      .toList();
-  allPotions.sort((a, b) => b.value().compareTo(a.value()));
+  var results = parser.parse(args);
 
-  if (!args.isEmpty && args[0] == '-v') {
-    print(allPotions.join("\n"));
+  num numIngred;
+  try {
+    numIngred = int.parse(results['num']);
+  } catch (e) {
+    print(parser.usage);
+    exit(64);
+  }
+
+  var ingredients = allIngredients.take(numIngred).toList();
+  var potions = findPotions(ingredients);
+
+  potions.sort((a, b) => b.value().compareTo(a.value()));
+
+  if (results['verbose']) {
+    print(potions.join("\n"));
   } else {
-    print("Found ${allPotions.length} potions from " +
-        "${allIngredients.length} ingredients");
+    print("Found ${potions.length} potions from " +
+        "${ingredients.length} ingredients");
   }
 }
