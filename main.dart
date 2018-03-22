@@ -1,6 +1,6 @@
 import 'common.dart';
 import 'ingredients.dart';
-import 'subsets.dart' show subsets2or3;
+import 'subsets.dart' show subsetsOfSize;
 
 num sum(Iterable<num> numbers) {
   var v = 0;
@@ -43,7 +43,10 @@ class Potion {
 }
 
 main(List<String> args) {
-  var allPotions = subsets2or3(allIngredients)
+  var subsets = subsetsOfSize(allIngredients, 2)
+    ..addAll(subsetsOfSize(allIngredients, 3));
+
+  var allPotions = subsets
       .map((list) => new Potion(new Set.from(list)))
       .where((potion) => potion.value() > 0)
       .toList();

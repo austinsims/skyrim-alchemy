@@ -1,31 +1,35 @@
-import 'collection_helper.dart' show eqSet;
-import 'package:collection/collection.dart';
+// from https://gist.github.com/thmain/b574c5f0fc29c7698d65#file-allsubsetofsizek-java
+List<Set> subsetsOfSize(List<num> list, num size) {
+  List<Set> result = [];
+  List<bool> used = new List.filled(list.length, false);
 
-Iterable<EqualitySet> subsets2(Set s) {
-  EqualitySet<EqualitySet> subsets = eqSet();
-  for (var i in s) {
-    for (var j in s) {
-      subsets.add(new Set.from([i, j]));
-    }
-  }
-  return subsets.where((subset) => subset.length == 2);
-}
-
-Iterable<EqualitySet> subsets3(Set s) {
-  EqualitySet<EqualitySet> subsets = eqSet();
-  for (var i in s) {
-    for (var j in s) {
-      for (var k in s) {
-        subsets.add(new Set.from([i, j, k]));
+  void subsetsInternal(num start, num currLen) {
+    if (currLen == size) {
+      Set s = new Set.identity();
+      for (num i = 0; i < list.length; i++) {
+        if (used[i]) {
+          s.add(list[i]);
+        }
       }
+      result.add(s);
+    } else if (start < list.length) {
+      used[start] = true;
+      subsetsInternal(start + 1, currLen + 1);
+      used[start] = false;
+      subsetsInternal(start + 1, currLen);
     }
   }
-  return subsets.where((subset) => subset.length == 3);
+
+  subsetsInternal(0, 0);
+  return result;
 }
 
-List<EqualitySet> subsets2or3(Set s) {
-  var result = [];
-  result.addAll(subsets2(s));
-  result.addAll(subsets3(s));
-  return result;
+main() {
+  List<num> list = ['a', 'b', 'c'];
+  // List<num> list = [];
+  var ss = subsetsOfSize(list, 2);
+  print('Found ${ss.length} sets');
+  for (var s in ss) {
+    print(s);
+  }
 }

@@ -1,53 +1,47 @@
-import 'collection_helper.dart' show eqSet;
-import 'subsets.dart' show subsets2or3;
+import 'subsets.dart' show subsetsOfSize;
 import "package:test/test.dart";
 
 void main() {
-  test("finds no subsets of empty set", () {
-    var input = eqSet();
+  test("finds no subsets of size 2 from empty set", () {
+    var input = [];
     var expected = [];
-    expect(subsets2or3(input), equals(expected));
+    expect(subsetsOfSize(input, 2), equals(expected));
   });
 
-  test("finds no subsets when only single element", () {
-    var input = eqSet(['a']);
+  test("finds no subsets of size 2 from single element", () {
+    var input = [];
     var expected = [];
-    expect(subsets2or3(input), equals(expected));
+    expect(subsetsOfSize(input, 2), equals(expected));
   });
 
-  test("finds single subset when two elements", () {
-    var input = eqSet(['a', 'b']);
+  test("finds single subset of size 2 from 2 elements", () {
+    var input = ['a', 'b'];
     var expected = [
-      eqSet(['a', 'b']),
+      ['a', 'b'],
     ];
-    expect(subsets2or3(input), equals(expected));
+    expect(subsetsOfSize(input, 2), equals(expected));
   });
 
-  test("finds subsets when three elements", () {
-    var input = eqSet(['a', 'b', 'c']);
+  test("finds subsets of size 2 from 3 elements", () {
+    var input = ['a', 'b', 'c'];
     var expected = [
-      eqSet(['a', 'b']),
-      eqSet(['a', 'c']),
-      eqSet(['b', 'c']),
-      eqSet(['a', 'b', 'c']),
+      ['a', 'b'],
+      ['a', 'c'],
+      ['b', 'c'],
     ];
-    expect(subsets2or3(input), equals(expected));
+    expect(subsetsOfSize(input, 2), equals(expected));
   });
 
-  test("finds subsets when four elements", () {
-    var input = eqSet(['a', 'b', 'c', 'd']);
+  test("finds subsets of size 2 from four elements", () {
+    var input = ['a', 'b', 'c', 'd'];
     var expected = [
-      eqSet(['a', 'b']),
-      eqSet(['a', 'c']),
-      eqSet(['a', 'd']),
-      eqSet(['b', 'c']),
-      eqSet(['b', 'd']),
-      eqSet(['c', 'd']),
-      eqSet(['a', 'b', 'c']),
-      eqSet(['a', 'b', 'd']),
-      eqSet(['a', 'c', 'd']),
-      eqSet(['b', 'c', 'd']),
+      ['a', 'b'],
+      ['a', 'c'],
+      ['a', 'd'],
+      ['b', 'c'],
+      ['b', 'd'],
+      ['c', 'd'],
     ];
-    expect(subsets2or3(input), equals(expected));
+    expect(subsetsOfSize(input, 2), equals(expected));
   });
 }
