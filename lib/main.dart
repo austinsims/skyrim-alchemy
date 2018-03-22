@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:skyrim_alchemy/alchemy/common.dart';
 import 'package:skyrim_alchemy/alchemy/ingredients.dart';
+import 'package:skyrim_alchemy/alchemy/alchemy.dart';
 import 'dart:math' show max;
 
 void main() => runApp(new MyApp());
@@ -40,10 +41,35 @@ class _MyHomePageState extends State<IngredientList> {
         new IconButton(icon: new Icon(Icons.clear_all), onPressed: () {
           setState(() { _resetQuantities(); });
         }),
+        new IconButton(icon: new Icon(Icons.local_pharmacy), onPressed: _pushPotions),
       ],
     ),
     body: _buildIngredients(),
   );
+
+  _pushPotions() {
+    Navigator.of(context).push(
+      new MaterialPageRoute(
+        builder: (context) {
+          var heldIngredients = allIngredients
+              .where((i) => _quantity[i] > 0)
+              .toList();
+          // TODO: Move findPotions off main thread.
+          var potions = findPotions(heldIngredients);
+          // TODO: Secondary sort by number of ingredients (fewer is better)
+          potions.sort((a, b) => b.value().compareTo(a.value()));
+          // TODO: Nice UI to show potions.
+          var blob = 'Found ${potions.length} potions\n\n'
+              + potions.map((p) => p.toString()).join('\n\n');
+          return new Scaffold(
+            appBar: new AppBar(title: new Text('Potions')),
+            // TODO: "Done" button to deduct ingredients and update potions.
+            body: new Text(blob),
+          );
+        }
+      )
+    );
+  }
 
   Widget _buildIngredients() => new ListView.builder(
     padding: const EdgeInsets.all(16.0),
