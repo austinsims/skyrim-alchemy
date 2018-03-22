@@ -21,8 +21,6 @@ class IngredientList extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<IngredientList> {
-  final _ingredients = ['Bear Hair Folicle', 'Mouse Testicle'];
-
   @override
   Widget build(BuildContext context) => new Scaffold(
     appBar: new AppBar(
