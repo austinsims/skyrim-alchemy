@@ -1,4 +1,4 @@
-import 'subsets.dart' show subsetsOfSize;
+import 'package:skyrim_alchemy/alchemy/subsets.dart' show subsetsOfSize;
 import "package:test/test.dart";
 
 void main() {
