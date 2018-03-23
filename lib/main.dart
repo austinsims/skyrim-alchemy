@@ -58,7 +58,6 @@ class _MyHomePageState extends State<IngredientList> {
           var potions = findPotions(heldIngredients);
           return new Scaffold(
             appBar: new AppBar(title: new Text('Potions')),
-            // TODO: "Done" button to deduct ingredients and update potions.
             body: new ListView.builder(
               padding: const EdgeInsets.all(16.0),
               itemCount: potions.length * 2,
