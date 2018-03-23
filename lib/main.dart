@@ -44,7 +44,7 @@ class _MyHomePageState extends State<IngredientList> {
         new IconButton(icon: new Icon(Icons.local_pharmacy), onPressed: _pushPotions),
       ],
     ),
-    body: _buildIngredients(),
+    body: _buildIngredientList(),
   );
 
   _pushPotions() {
@@ -56,35 +56,39 @@ class _MyHomePageState extends State<IngredientList> {
               .toList();
           // TODO: Move findPotions off main thread.
           var potions = findPotions(heldIngredients);
-          // TODO: Nice UI to show potions.
-          var blob = 'Found ${potions.length} potions\n\n'
-              + potions.map((p) => p.toString()).join('\n\n');
           return new Scaffold(
             appBar: new AppBar(title: new Text('Potions')),
             // TODO: "Done" button to deduct ingredients and update potions.
-            body: new Text(blob),
+            body: new ListView.builder(
+              padding: const EdgeInsets.all(16.0),
+              itemCount: potions.length * 2,
+              itemBuilder: (context, i) {
+                if (i.isOdd) {
+                  return new Divider();
+                }
+                final index = i ~/ 2;
+                return _buildPotionRow(potions[index]);
+              }
+            ),
           );
         }
       )
     );
   }
 
-  Widget _buildIngredients() => new ListView.builder(
+  Widget _buildIngredientList() => new ListView.builder(
     padding: const EdgeInsets.all(16.0),
     itemCount: allIngredients.length * 2,
     itemBuilder: (context, i) {
       if (i.isOdd) {
         return new Divider();
       }
-
-      // Compensate for dividers
       final index = i ~/ 2;
-
-      return _buildRow(allIngredients[index]);
+      return _buildIngredientRow(allIngredients[index]);
     }
   );
 
-  Widget _buildRow(Ingredient ingredient) {
+  Widget _buildIngredientRow(Ingredient ingredient) {
     return new ListTile(
       title: new Text(ingredient.name),
       trailing: new Row(children: [
@@ -99,10 +103,37 @@ class _MyHomePageState extends State<IngredientList> {
       ]),
     );
   }
+
+  Widget _buildPotionRow(Potion potion) {
+    return new Row(
+      children: [
+        new Text(
+          pad('\$${potion.value()}', 4), // Assumes no potions worth >= $1000
+          style: new TextStyle(fontSize: 32.0, fontFamily: 'Courier'),
+        ),
+        // TODO: Line up the ingredient lists, it looks horrid.
+        new Column(
+          children: potion.ingredients.map((i) => new Text(i.name)).toList(),
+          crossAxisAlignment: CrossAxisAlignment.start,
+        ),
+        new IconButton(icon: new Icon(Icons.check), onPressed: () {
+          // TODO
+        }),
+      ],
+      mainAxisAlignment: MainAxisAlignment.spaceBetween
+    );
+  }
 }
 
 void initQuantiyMap(Map<Ingredient, num> map) {
   for (var ingredient in allIngredients) {
     map[ingredient] = 0;
   }
+}
+
+/// Pads str with preceding spaces to make it "length" characters long.
+/// Assumes "str" is less than or equal to "length" characters long.
+String pad(String str, num length) {
+  while (str.length < length) str = ' ' + str;
+  return str;
 }
