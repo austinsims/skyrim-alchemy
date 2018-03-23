@@ -117,7 +117,12 @@ class _MyHomePageState extends State<IngredientList> {
           crossAxisAlignment: CrossAxisAlignment.start,
         ),
         new IconButton(icon: new Icon(Icons.check), onPressed: () {
-          // TODO
+          setState(() {
+            for (var ingredient in potion.ingredients) {
+              // TODO: This doesn't re-render after pressing button.
+              _quantity[ingredient] = _quantity[ingredient] - 1;
+            }
+          });
         }),
       ],
       mainAxisAlignment: MainAxisAlignment.spaceBetween
