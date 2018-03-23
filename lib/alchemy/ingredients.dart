@@ -95,12 +95,8 @@ var hagravenFeathers = new Ingredient("Hagraven Feathers",
     new Set.from([damageMagicka, fortifyConjuration, frenzy, weaknessToShock]));
 var hangingMoss = new Ingredient(
     "Hanging Moss",
-    new Set.from([
-      damageMagicka,
-      damageMagickaRegen,
-      fortifyHealth,
-      fortifyOneHanded
-    ]));
+    new Set.from(
+        [damageMagicka, damageMagickaRegen, fortifyHealth, fortifyOneHanded]));
 var lunaMothWing = new Ingredient(
     "Luna Moth Wing",
     new Set.from(
@@ -123,12 +119,8 @@ var ancestorMothWing = new Ingredient(
     ]));
 var bearClaws = new Ingredient(
     "Bear Claws",
-    new Set.from([
-      damageMagickaRegen,
-      fortifyHealth,
-      fortifyOneHanded,
-      restoreStamina
-    ]));
+    new Set.from(
+        [damageMagickaRegen, fortifyHealth, fortifyOneHanded, restoreStamina]));
 var blueButterflyWing = new Ingredient(
     "Blue Butterfly Wing",
     new Set.from([
