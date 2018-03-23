@@ -56,8 +56,6 @@ class _MyHomePageState extends State<IngredientList> {
               .toList();
           // TODO: Move findPotions off main thread.
           var potions = findPotions(heldIngredients);
-          // TODO: Secondary sort by number of ingredients (fewer is better)
-          potions.sort((a, b) => b.value().compareTo(a.value()));
           // TODO: Nice UI to show potions.
           var blob = 'Found ${potions.length} potions\n\n'
               + potions.map((p) => p.toString()).join('\n\n');
