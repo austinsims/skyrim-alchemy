@@ -25,6 +25,14 @@ class IngredientList extends StatefulWidget {
 class _MyHomePageState extends State<IngredientList> {
   final _quantity = new Map<Ingredient, num>();
 
+  List<Potion> _findPotions() {
+    // TODO: Move off main thread.
+    var heldIngredients = allIngredients
+        .where((i) => _quantity[i] > 0)
+        .toList();
+    return findPotions(heldIngredients);
+  }
+
   _MyHomePageState() {
     _resetQuantities();
   }
@@ -51,41 +59,43 @@ class _MyHomePageState extends State<IngredientList> {
     Navigator.of(context).push(
       new MaterialPageRoute(
         builder: (context) {
-          var heldIngredients = allIngredients
-              .where((i) => _quantity[i] > 0)
-              .toList();
-          // TODO: Move findPotions off main thread.
-          var potions = findPotions(heldIngredients);
           return new Scaffold(
             appBar: new AppBar(title: new Text('Potions')),
-            body: new ListView.builder(
-              padding: const EdgeInsets.all(16.0),
-              itemCount: potions.length * 2,
-              itemBuilder: (context, i) {
-                if (i.isOdd) {
-                  return new Divider();
-                }
-                final index = i ~/ 2;
-                return _buildPotionRow(potions[index]);
-              }
-            ),
+            body: _buildPotionList(),
           );
         }
       )
     );
   }
 
-  Widget _buildIngredientList() => new ListView.builder(
-    padding: const EdgeInsets.all(16.0),
-    itemCount: allIngredients.length * 2,
-    itemBuilder: (context, i) {
-      if (i.isOdd) {
-        return new Divider();
+  Widget _buildIngredientList() {
+    return new ListView.builder(
+      padding: const EdgeInsets.all(16.0),
+      itemCount: allIngredients.length * 2,
+      itemBuilder: (context, i) {
+        if (i.isOdd) {
+          return new Divider();
+        }
+        final index = i ~/ 2;
+        return _buildIngredientRow(allIngredients[index]);
       }
-      final index = i ~/ 2;
-      return _buildIngredientRow(allIngredients[index]);
-    }
-  );
+    );
+  }
+
+  Widget _buildPotionList() { 
+    var potions = _findPotions();
+    return new ListView.builder(
+      padding: const EdgeInsets.all(16.0),
+      itemCount: potions.length * 2,
+      itemBuilder: (context, i) {
+        if (i.isOdd) {
+          return new Divider();
+        }
+        final index = i ~/ 2;
+        return _buildPotionRow(potions[index]);
+      }
+    );
+  }
 
   Widget _buildIngredientRow(Ingredient ingredient) {
     return new ListTile(
