@@ -9,24 +9,31 @@ var vampireDust = new Ingredient(
     "Vampire Dust",
     new Set.from(
         [cureDisease, invisibility, regenerateHealth, restoreMagicka]));
-var charredSkeeverHide = new Ingredient("Charred Skeever Hide",
-    new Set.from([cureDisease, resistPoison, restoreHealth, restoreStamina]));
+var charredSkeeverHide = new Ingredient(
+    "Charred Skeever Hide",
+    new Set.from([cureDisease, resistPoison, restoreHealth, restoreStamina]),
+    new Map.fromIterables([cureDisease], [0.36]));
 var hawkFeathers = new Ingredient(
     "Hawk Feathers",
     new Set.from(
-        [cureDisease, fortifyLightArmor, fortifyOneHanded, fortifySneak]));
+        [cureDisease, fortifyLightArmor, fortifyOneHanded, fortifySneak]),
+    new Map.fromIterables([cureDisease], [0.36]));
 var jarrinRoot = new Ingredient(
     "Jarrin Root",
     new Set.from(
         [damageHealth, damageMagicka, damageMagickaRegen, damageStamina]));
 var riverBetty = new Ingredient("River Betty",
     new Set.from([damageHealth, fortifyAlteration, fortifyCarryWeight, slow]));
-var nirnroot = new Ingredient("Nirnroot",
-    new Set.from([damageHealth, damageStamina, invisibility, resistMagic]));
+var nirnroot = new Ingredient(
+    "Nirnroot",
+    new Set.from([damageHealth, damageStamina, invisibility, resistMagic]),
+    new Map.fromIterables([damageHealth], [12.6]));
 var crimsonNirnroot = new Ingredient("Crimson Nirnroot",
     new Set.from([damageHealth, damageStamina, invisibility, resistMagic]));
-var deathbell = new Ingredient("Deathbell",
-    new Set.from([damageHealth, ravageStamina, slow, weaknessToPoison]));
+var deathbell = new Ingredient(
+    "Deathbell",
+    new Set.from([damageHealth, ravageStamina, slow, weaknessToPoison]),
+    new Map.fromIterables([ravageStamina], [2.1]));
 var ectoplasm = new Ingredient(
     "Ectoplasm",
     new Set.from(
@@ -202,13 +209,15 @@ var canisRoot = new Ingredient(
 var cyrodilicSpadetail = new Ingredient("Cyrodilic Spadetail",
     new Set.from([damageStamina, fear, fortifyRestoration, ravageHealth]));
 var giantsToe = new Ingredient(
-    "Giant's Toe",
-    new Set.from([
-      damageStamina,
-      damageStaminaRegen,
-      fortifyCarryWeight,
-      fortifyHealth
-    ]));
+  "Giant's Toe",
+  new Set.from([
+    damageStamina,
+    damageStaminaRegen,
+    fortifyCarryWeight,
+    fortifyHealth,
+  ]),
+  new Map.fromIterables([fortifyHealth], [5.9]),
+);
 var rockWarblerEgg = new Ingredient(
     "Rock Warbler Egg",
     new Set.from(
@@ -392,7 +401,8 @@ var jazbayGrapes = new Ingredient(
 var salmonRoe = new Ingredient(
     "Salmon Roe",
     new Set.from(
-        [fortifyMagicka, regenerateMagicka, restoreStamina, waterbreathing]));
+        [fortifyMagicka, regenerateMagicka, restoreStamina, waterbreathing]),
+    new Map.fromIterables([waterbreathing, fortifyMagicka], [15.4, 1.05]));
 var elvesEar = new Ingredient(
     "Elves Ear",
     new Set.from(

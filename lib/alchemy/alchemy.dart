@@ -11,7 +11,7 @@ class Potion {
   Set<Ingredient> ingredients;
   Potion(this.ingredients);
 
-  Set<Effect> effects() {
+  Set<Effect> getEffects() {
     var allIngredientEffects = new Set.identity();
     for (var ingredient in ingredients) {
       allIngredientEffects = allIngredientEffects.union(ingredient.effects);
@@ -29,13 +29,29 @@ class Potion {
     return new Set.from(effects);
   }
 
-  num value() => sum(effects().map((e) => e.value));
+  num value() {
+    num getMult(Effect e) {
+      if (this.ingredients.any((i) => i.multipliers.containsKey(e))) {
+        // TODO: Bug here where if multiple ingredients multiply an effect,
+        // the first in the Iterable wins, whereas there is a specific priority
+        // in the game itself that we're ignoring.
+        var ingredient =
+            this.ingredients.firstWhere((i) => i.multipliers.containsKey(e));
+        var multiplier = ingredient.multipliers[e];
+        return multiplier;
+      }
+      return 1;
+    }
+    var effects = getEffects();
+    var values = effects.map((e) => e.value * getMult(e));
+    return sum(values);
+  }
 
   toString() {
     num val = value();
-    String desc = effects().isEmpty
+    String desc = getEffects().isEmpty
         ? "Nothing"
-        : effects().map((e) => e.toString()).join(", ");
+        : getEffects().map((e) => e.toString()).join(", ");
     String ingredList = ingredients.join(", ");
     return "\$$val potion of $desc made with $ingredList";
   }

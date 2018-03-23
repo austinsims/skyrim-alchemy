@@ -54,12 +54,12 @@ void main() {
     expect(potions, equals(sorted));
   });
 
-  // test("accounts for effect multipliers in certain ingredients", () {
-  //   var potion = new Potion(new Set.from([
-  //     bearClaws,
-  //     giantsToe,
-  //     nirnroot,
-  //   ]));
-  //   expect(potion.value(), equals(535));
-  // });
+  test("accounts for effect multipliers", () {
+    var potion = new Potion(new Set.from([
+      bearClaws,
+      giantsToe,
+      nirnroot,
+    ]));
+    expect(potion.value(), equals(526.8));
+  });
 }
