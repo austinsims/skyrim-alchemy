@@ -31,9 +31,9 @@ void main() {
       THREE_POTION_24,
     ];
     var sorted = [
-      THREE_POTION_24,
-      THREE_POTION_118,
       THREE_POTION_265,
+      THREE_POTION_118,
+      THREE_POTION_24,
     ];
     sortPotions(potions);
     expect(potions, equals(sorted));
@@ -46,10 +46,20 @@ void main() {
       TWO_POTION_118,
     ];
     var sorted = [
-      THREE_POTION_24,
-      THREE_POTION_118,
       TWO_POTION_118,
+      THREE_POTION_118,
+      THREE_POTION_24,
     ];
+    sortPotions(potions);
     expect(potions, equals(sorted));
   });
+
+  // test("accounts for effect multipliers in certain ingredients", () {
+  //   var potion = new Potion(new Set.from([
+  //     bearClaws,
+  //     giantsToe,
+  //     nirnroot,
+  //   ]));
+  //   expect(potion.value(), equals(535));
+  // });
 }
