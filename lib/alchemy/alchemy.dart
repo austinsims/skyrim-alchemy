@@ -37,7 +37,7 @@ class Potion {
         ? "Nothing"
         : effects().map((e) => e.toString()).join(", ");
     String ingredList = ingredients.join(", ");
-    return "\$${val} potion of ${desc} made with ${ingredList}";
+    return "\$$val potion of $desc made with $ingredList";
   }
 }
 
@@ -49,6 +49,23 @@ List<Potion> findPotions(List<Ingredient> ingredients) {
       .map((list) => new Potion(new Set.from(list)))
       .where((potion) => potion.value() > 0)
       .toList();
+  
+  sortPotions(potions);
 
   return potions;
+}
+
+void sortPotions(List<Potion> potions) {
+  potions.sort((a, b) {
+    if (a.value() > b.value()) {
+      return -1;
+    } else if (b.value() > a.value()) {
+      return 1;
+    } else if (a.ingredients.length < b.ingredients.length) {
+      return -11;
+    } else if (b.ingredients.length < a.ingredients.length) {
+      return 1;
+    }
+    return 0;
+  });
 }
