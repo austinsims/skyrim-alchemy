@@ -1,22 +1,18 @@
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:redux/redux.dart';
 import 'package:skyrim_alchemy/actions.dart';
 import 'package:skyrim_alchemy/model.dart';
-import 'package:skyrim_alchemy/pages/home_page.dart';
-import 'package:skyrim_alchemy/pages/potion_list_page.dart';
-import 'package:skyrim_alchemy/reducers/app_reducer.dart';
+import 'package:skyrim_alchemy/containers/home_page.dart';
+import 'package:skyrim_alchemy/containers/potion_list_container.dart';
 import 'package:skyrim_alchemy/routes.dart';
+import 'package:skyrim_alchemy/store.dart';
 
 void main() {
   runApp(new App());
 }
 
 class App extends StatelessWidget {
-  final store = new Store<AppState>(
-    appReducer,
-    initialState: new AppState(),
-  );
+  final store = createStore();
 
   App();
 
@@ -36,7 +32,7 @@ class App extends StatelessWidget {
             );
           },
           Routes.potionList: (context) {
-            return new PotionListPage();
+            return new PotionListContainer();
           }
         },
       ),

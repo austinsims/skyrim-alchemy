@@ -1,3 +1,4 @@
+import 'package:skyrim_alchemy/alchemy/alchemy.dart';
 import 'package:skyrim_alchemy/alchemy/common.dart';
 
 class IncIngredAction {
@@ -16,3 +17,8 @@ class DecMultIngredAction {
 }
 
 class InitCountsAction {}
+
+class SetPotionsAction {
+  final List<Potion> potions;
+  SetPotionsAction(this.potions);
+}

@@ -7,6 +7,7 @@ import 'package:skyrim_alchemy/alchemy/ingredients.dart';
 import 'package:skyrim_alchemy/model.dart';
 import 'package:skyrim_alchemy/routes.dart';
 
+// TODO: Separate into container and page.
 class HomePage extends StatelessWidget {
   HomePage({Key key}): super(key: key);
 

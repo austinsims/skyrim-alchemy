@@ -1,93 +1,67 @@
-import 'package:flutter_redux/flutter_redux.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:skyrim_alchemy/actions.dart';
 import 'package:skyrim_alchemy/alchemy/alchemy.dart';
 import 'package:skyrim_alchemy/alchemy/common.dart';
-import 'package:skyrim_alchemy/alchemy/ingredients.dart';
-import 'package:skyrim_alchemy/model.dart';
 
 class PotionListPage extends StatelessWidget {
-  PotionListPage({Key key}): super(key: key);
+  final List<Potion> potions;
+  final Map<Ingredient, int> ingredCount;
+  final Function(Potion) onBrew;
 
-  @override
+  PotionListPage({
+    @required this.potions,
+    @required this.ingredCount,
+    @required this.onBrew,
+  });
+
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: new AppBar(
-        title: new Text('Potions'),
-      ),
-      body: _buildPotionList(),
+      appBar: new AppBar(title: new Text('Potions')),
+      body: potions.isEmpty ? _buildEmptyMessage() : _buildList(),
     );
   }
 
-  Widget _buildPotionList() { 
-    return new StoreConnector<AppState, Map<Ingredient, int>>(
-      converter: (store) => store.state.ingredCount,
-      builder: (context, ingredCount) {
-        var potions = _findPotions(ingredCount);
-        if (potions.isEmpty) {
-          return new Center(
-            child: new Text('No potions found', style: new TextStyle(fontSize: 32.0))
-          );
-        } else {
-          return new ListView.builder(
-            padding: const EdgeInsets.all(16.0),
-            itemCount: potions.length * 2,
-            itemBuilder: (context, i) {
-              if (i.isOdd) {
-                return new Divider();
-              }
-              final index = i ~/ 2;
-              return _buildPotionRow(potions[index]);
-            }
-          );
-        }
+  Widget _buildEmptyMessage() {
+    return new Center(
+      child: new Text('No potions found', style: new TextStyle(fontSize: 32.0))
+    );
+  }
+
+  Widget _buildList() {
+    return new ListView.builder(
+      itemCount: potions.length * 2,
+      itemBuilder: (context, i) {
+        if (i.isOdd) return new Divider();
+        final index = i ~/ 2;
+        return _buildRow(index);
       }
     );
   }
 
-  Widget _buildPotionRow(Potion potion) {
+  _buildRow(int index) {
+    // BUG: Value label assumes no potions worth >= $1000 which isn't true.
+    // TODO: Line up ingredient lists, it looks horrid.
+    final potion = potions[index];
     return new Row(
       children: [
         new Text(
-          pad('\$${potion.value}', 4), // Assumes no potions worth >= $1000
+          pad('\$${potion.value}', 4),
           style: new TextStyle(fontSize: 32.0, fontFamily: 'Courier'),
         ),
-        // TODO: Line up the ingredient lists, it looks horrid.
-        _buildIngredientColumn(potion.ingredients),
-        new StoreConnector<AppState, VoidCallback>(
-          converter: (store) {
-            return () => store.dispatch(
-                new DecMultIngredAction(potion.ingredients));
-          },
-          builder: (context, callback) => new IconButton(
-            icon: new Icon(Icons.check),
-            onPressed: callback
-          ),
+        new Column(
+          children: potion.ingredients
+              .map((i) => new Text('${i.name} (${ingredCount[i]})'))
+              .toList(),
+          crossAxisAlignment: CrossAxisAlignment.start,
+        ),
+        new IconButton(
+          icon: new Icon(Icons.check),
+          onPressed: () => onBrew(potion),
         ),
       ],
       mainAxisAlignment: MainAxisAlignment.spaceBetween
     );
   }
-
-  Widget _buildIngredientColumn(Iterable<Ingredient> ingredients) {
-    return new StoreConnector<AppState, Map<Ingredient, int>>(
-      converter: (store) => store.state.ingredCount,
-      builder: (context, ingredCounts) => new Column(
-        children: ingredients
-            .map((i) => new Text('${i.name} (${ingredCounts[i]})'))
-            .toList(),
-        crossAxisAlignment: CrossAxisAlignment.start,
-      ),
-    );
-  }
-}
-
-List<Potion> _findPotions(Map<Ingredient, int> ingredCounts) {
-  // TODO: Move off main thread.
-  var heldIngredients = allIngredients
-      .where((i) => ingredCounts[i] > 0)
-      .toList();
-  return findPotions(heldIngredients);
 }
 
 /// Pads str with preceding spaces to make it "length" characters long.
