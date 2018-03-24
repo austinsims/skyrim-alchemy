@@ -53,10 +53,7 @@ class PotionListPage extends StatelessWidget {
           style: new TextStyle(fontSize: 32.0, fontFamily: 'Courier'),
         ),
         // TODO: Line up the ingredient lists, it looks horrid.
-        new Column(
-          children: potion.ingredients.map((i) => new Text(i.name)).toList(),
-          crossAxisAlignment: CrossAxisAlignment.start,
-        ),
+        _buildIngredientColumn(potion.ingredients),
         new StoreConnector<AppState, VoidCallback>(
           converter: (store) {
             return () => store.dispatch(
@@ -69,6 +66,18 @@ class PotionListPage extends StatelessWidget {
         ),
       ],
       mainAxisAlignment: MainAxisAlignment.spaceBetween
+    );
+  }
+
+  Widget _buildIngredientColumn(Iterable<Ingredient> ingredients) {
+    return new StoreConnector<AppState, Map<Ingredient, int>>(
+      converter: (store) => store.state.ingredCount,
+      builder: (context, ingredCounts) => new Column(
+        children: ingredients
+            .map((i) => new Text('${i.name} (${ingredCounts[i]})'))
+            .toList(),
+        crossAxisAlignment: CrossAxisAlignment.start,
+      ),
     );
   }
 }
