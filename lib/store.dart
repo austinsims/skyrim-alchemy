@@ -5,7 +5,7 @@ import 'package:skyrim_alchemy/alchemy/alchemy.dart';
 import 'package:skyrim_alchemy/actions.dart';
 import 'package:skyrim_alchemy/alchemy/ingredients.dart';
 
-const POTIONS_SHOWN_COUNT = 8;
+const POTIONS_SHOWN_COUNT = 7;
 
 Store<AppState> createStore() {
   final initialState = new AppState();

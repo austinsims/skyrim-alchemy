@@ -17,7 +17,7 @@ class PotionListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(title: new Text('Potions')),
-      body: potions.isEmpty ? _buildEmptyMessage() : _buildList(),
+      body: potions.isEmpty ? _buildEmptyMessage() : _buildTable(),
     );
   }
 
@@ -27,47 +27,49 @@ class PotionListScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildList() {
-    return new ListView.builder(
-      padding: const EdgeInsets.all(16.0),
-      itemCount: potions.length * 2,
-      itemBuilder: (context, i) {
-        if (i.isOdd) return new Divider();
-        final index = i ~/ 2;
-        return _buildRow(index);
-      }
+  Widget _buildTable() {
+    return new Table(
+      children: potions.map(_buildRow).toList(),
+      columnWidths: {
+        0: new FractionColumnWidth(0.28),
+        1: new FractionColumnWidth(0.55),
+        2: new FractionColumnWidth(0.17),
+      },
     );
   }
 
-  _buildRow(int index) {
-    // BUG: Value label assumes no potions worth >= $1000 which isn't true.
-    // TODO: Line up ingredient lists, it looks horrid.
-    final potion = potions[index];
-    return new Row(
+  TableRow _buildRow(Potion potion) {
+    return new TableRow(
       children: [
-        new Text(
-          pad('\$${potion.value}', 4),
-          style: new TextStyle(fontSize: 32.0, fontFamily: 'Courier'),
+        new TableCell(
+          child: new Padding(
+            padding: new EdgeInsets.all(12.0),
+            child: new Text(
+              '\$${potion.value.floor()}',
+              style: new TextStyle(fontSize: 32.0, fontFamily: 'Courier'),
+            )
+          )
         ),
-        new Column(
-          children: potion.ingredients
-              .map((i) => new Text('${i.name} (${ingredCount[i]})'))
-              .toList(),
-          crossAxisAlignment: CrossAxisAlignment.start,
+        new TableCell(
+          child: new Padding(
+            padding: new EdgeInsets.all(12.0),
+            child: new Column(
+              children: potion.ingredients
+                  .map((i) => new Text('${i.name} (${ingredCount[i]})'))
+                  .toList(),
+              crossAxisAlignment: CrossAxisAlignment.start,
+            )
+          )
         ),
-        new IconButton(
-          icon: new Icon(Icons.check),
-          onPressed: () => onBrew(potion),
+        new TableCell(
+          child: new Padding(
+            padding: new EdgeInsets.all(12.0), child: new IconButton(
+              icon: new Icon(Icons.check),
+              onPressed: () => onBrew(potion),
+            )
+          )
         ),
       ],
-      mainAxisAlignment: MainAxisAlignment.spaceBetween
     );
   }
-}
-
-/// Pads str with preceding spaces to make it "length" characters long.
-/// Assumes "str" is less than or equal to "length" characters long.
-String pad(String str, num length) {
-  while (str.length < length) str = ' ' + str;
-  return str;
 }
