@@ -55,6 +55,16 @@ class Potion {
     String ingredList = ingredients.join(", ");
     return "\$$val potion of $desc made with $ingredList";
   }
+
+  @override
+  bool operator ==(Object other) =>
+    identical(this, other) ||
+    other is Potion &&
+        runtimeType == other.runtimeType &&
+        ingredients.every((i) => other.ingredients.contains(i));
+  
+  @override
+  int get hashCode => ingredients.hashCode;
 }
 
 List<Potion> findPotions(List<Ingredient> ingredients) {
