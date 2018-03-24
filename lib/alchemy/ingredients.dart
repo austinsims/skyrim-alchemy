@@ -1,6 +1,8 @@
 import 'common.dart';
 import 'effects.dart';
 
+// TODO: Change all the "new Map.fromIterables" to map literals.
+
 var felsaadTernFeathers = new Ingredient("Felsaad Tern Feathers",
     new Set.from([cureDisease, fortifyLightArmor, resistMagic, restoreHealth]));
 var mudcrabChitin = new Ingredient("Mudcrab Chitin",
