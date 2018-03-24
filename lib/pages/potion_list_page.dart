@@ -49,7 +49,7 @@ class PotionListPage extends StatelessWidget {
     return new Row(
       children: [
         new Text(
-          pad('\$${potion.value()}', 4), // Assumes no potions worth >= $1000
+          pad('\$${potion.value}', 4), // Assumes no potions worth >= $1000
           style: new TextStyle(fontSize: 32.0, fontFamily: 'Courier'),
         ),
         // TODO: Line up the ingredient lists, it looks horrid.

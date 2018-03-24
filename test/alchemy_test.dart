@@ -38,11 +38,11 @@ void main() {
   });
 
   test("potion valuation works correctly", () {
-    expect(threePotion24.value(), equals(24));
-    expect(twoPotion118.value(), equals(118));
-    expect(threePotion118.value(), equals(118));
-    expect(twoPotion265.value(), equals(265));
-    expect(threePotion265.value(), equals(265));
+    expect(threePotion24.value, equals(24));
+    expect(twoPotion118.value, equals(118));
+    expect(threePotion118.value, equals(118));
+    expect(twoPotion265.value, equals(265));
+    expect(threePotion265.value, equals(265));
   });
 
   test("sorts potions of different gold values", () {
@@ -81,7 +81,7 @@ void main() {
       giantsToe,
       nirnroot,
     ]);
-    expect(potion.value(), equals(526.8));
+    expect(potion.value, equals(526.8));
   });
 
   test("potion equality operator positive case", () {

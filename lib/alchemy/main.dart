@@ -21,7 +21,7 @@ main(List<String> args) {
   var ingredients = allIngredients.take(numIngred).toList();
   var potions = findPotions(ingredients);
 
-  potions.sort((a, b) => b.value().compareTo(a.value()));
+  potions.sort((a, b) => b.value.compareTo(a.value));
 
   if (results['verbose']) {
     print(potions.join("\n"));
