@@ -1,5 +1,5 @@
 import 'common.dart';
-import 'subsets.dart' show subsetsOfSize;
+import 'package:built_collection/built_collection.dart';
 
 num sum(Iterable<num> numbers) {
   var v = 0;
@@ -8,8 +8,10 @@ num sum(Iterable<num> numbers) {
 }
 
 class Potion {
-  Set<Ingredient> ingredients;
-  Potion(this.ingredients);
+  BuiltSet<Ingredient> ingredients;
+  Potion(Iterable<Ingredient> ingredients) {
+    this.ingredients = new BuiltSet<Ingredient>(ingredients);
+  }
 
   Set<Effect> getEffects() {
     var allIngredientEffects = new Set.identity();
@@ -57,28 +59,59 @@ class Potion {
   }
 
   @override
-  bool operator ==(Object other) =>
-    identical(this, other) ||
-    other is Potion &&
-        runtimeType == other.runtimeType &&
-        ingredients.every((i) => other.ingredients.contains(i));
-  
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        other is Potion &&
+        ingredients == other.ingredients;
+  }
+      
   @override
   int get hashCode => ingredients.hashCode;
 }
 
+class Pair<T> {
+  T left;
+  T right;
+  Pair(this.left, this.right);
+  toString() {
+    return '{$left, $right}';
+  }
+}
+
 List<Potion> findPotions(List<Ingredient> ingredients) {
-  var subsets = subsetsOfSize(ingredients, 2)
-    ..addAll(subsetsOfSize(ingredients, 3));
+  var zet = new Set<Potion>();
 
-  var potions = subsets
-      .map((list) => new Potion(new Set.from(list)))
-      .where((potion) => potion.value() > 0)
-      .toList();
+  // Find all pairs of ingredients that share an effect.
+  var pairs = new List<Pair<Ingredient>>();
+  for (var i in ingredients) {
+    for (var j in ingredients) {
+      if (i == j) continue;
+      if (i.effects.any((e) => j.effects.contains(e))) {
+        pairs.add(new Pair(i, j));
+      }
+    }
+  }
+
+  // Add 2-ingredient potions.
+  zet.addAll(pairs.map((pair) =>
+      new Potion([pair.left, pair.right])));
+
+  // Find pairs of pairs that share an ingredient. Make 3-ingredient potions
+  // from those.
+  for (var x in pairs) {
+    for (var y in pairs) {
+      if (x == y) continue;
+      var ingredients = new BuiltSet<Ingredient>([x.left, x.right, y.left, y.right]);
+      if (ingredients.length == 3) {
+        var potion = new Potion(ingredients);
+        zet.add(potion);
+      }
+    }
+  }
   
-  sortPotions(potions);
-
-  return potions;
+  var list = zet.toList();
+  sortPotions(list);
+  return list;
 }
 
 void sortPotions(List<Potion> potions) {

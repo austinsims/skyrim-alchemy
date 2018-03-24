@@ -7,6 +7,7 @@ dependencies:
   cupertino_icons: ^0.1.0
 
 dev_dependencies:
+  built_collection: ^3.0.0
   redux: ">=2.0.0 <3.0.0"
   flutter_redux: ">=0.3.0 <0.4.0"
   flutter_test:
