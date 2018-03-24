@@ -6,8 +6,8 @@ import 'package:skyrim_alchemy/alchemy/common.dart';
 import 'package:skyrim_alchemy/alchemy/ingredients.dart';
 import 'package:skyrim_alchemy/model.dart';
 
-class PotionListScreen extends StatelessWidget {
-  PotionListScreen({Key key}): super(key: key);
+class PotionListPage extends StatelessWidget {
+  PotionListPage({Key key}): super(key: key);
 
   @override
   Widget build(BuildContext context) {
