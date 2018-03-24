@@ -25,12 +25,15 @@ class HomePage extends StatelessWidget {
               onPressed: callback,
             )
           ),
-          new IconButton(icon: new Icon(Icons.local_pharmacy), onPressed: () {
-            Navigator.pushNamed(context, Routes.potionList);
-          }),
         ],
       ),
       body: _buildIngredientList(),
+      floatingActionButton: new FloatingActionButton(
+        child: new Icon(Icons.local_pharmacy),
+        onPressed: () {
+          Navigator.pushNamed(context, Routes.potionList);
+        }
+      ),
     );
   }
 
