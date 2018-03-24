@@ -5,6 +5,8 @@ import 'package:skyrim_alchemy/alchemy/alchemy.dart';
 import 'package:skyrim_alchemy/actions.dart';
 import 'package:skyrim_alchemy/alchemy/ingredients.dart';
 
+const POTIONS_SHOWN_COUNT = 8;
+
 Store<AppState> createStore() {
   final initialState = new AppState();
   final store =new Store<AppState>(
@@ -22,7 +24,7 @@ Store<AppState> createStore() {
     var heldIngredients = allIngredients
         .where((i) => appState.ingredCount[i] > 0)
         .toList();
-    final potions = findPotions(heldIngredients);
+    final potions = findPotions(heldIngredients).take(POTIONS_SHOWN_COUNT).toList();
 
     store.dispatch(new SetPotionsAction(potions));
   });
