@@ -39,6 +39,8 @@ class PotionListScreen extends StatelessWidget {
   }
 
   TableRow _buildRow(Potion potion) {
+    final sortedIngredients = new List<Ingredient>.from(potion.ingredients);
+    sortedIngredients.sort((a, b) => a.name.compareTo(b.name));
     return new TableRow(
       children: [
         new TableCell(
@@ -54,7 +56,7 @@ class PotionListScreen extends StatelessWidget {
           child: new Padding(
             padding: new EdgeInsets.all(12.0),
             child: new Column(
-              children: potion.ingredients
+              children: sortedIngredients
                   .map((i) => new Text('${i.name} (${ingredCount[i]})'))
                   .toList(),
               crossAxisAlignment: CrossAxisAlignment.start,
