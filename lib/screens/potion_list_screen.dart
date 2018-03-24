@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:skyrim_alchemy/alchemy/alchemy.dart';
 import 'package:skyrim_alchemy/alchemy/common.dart';
 
-class PotionListPage extends StatelessWidget {
+class PotionListScreen extends StatelessWidget {
   final List<Potion> potions;
   final Map<Ingredient, int> ingredCount;
   final Function(Potion) onBrew;
 
-  PotionListPage({
+  PotionListScreen({
     @required this.potions,
     @required this.ingredCount,
     @required this.onBrew,
