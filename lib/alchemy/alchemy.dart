@@ -70,11 +70,11 @@ class Potion {
 }
 
 class Pair<T> {
-  T left;
-  T right;
-  Pair(this.left, this.right);
+  T first;
+  T second;
+  Pair(this.first, this.second);
   toString() {
-    return '{$left, $right}';
+    return '{$first, $second}';
   }
 }
 
@@ -94,18 +94,17 @@ List<Potion> findPotions(List<Ingredient> ingredients) {
 
   // Add 2-ingredient potions.
   zet.addAll(pairs.map((pair) =>
-      new Potion([pair.left, pair.right])));
+      new Potion([pair.first, pair.second])));
 
   // Find pairs of pairs that share an ingredient. Make 3-ingredient potions
   // from those.
   for (var x in pairs) {
     for (var y in pairs) {
       if (x == y) continue;
-      var ingredients = new BuiltSet<Ingredient>([x.left, x.right, y.left, y.right]);
-      if (ingredients.length == 3) {
-        var potion = new Potion(ingredients);
-        zet.add(potion);
-      }
+      var ingredients = three(x, y);
+      if (ingredients == null) continue;
+      var potion = new Potion(ingredients);
+      zet.add(potion);
     }
   }
   
@@ -127,4 +126,28 @@ void sortPotions(List<Potion> potions) {
     }
     return 0;
   });
+}
+
+/// If x and y share an ingredient, return the three unique ingredients
+/// between them. Otherwise, returns null.
+/// This assumes the input pairs never contain the same ignredient in as both
+/// "first" and "second".
+Iterable<Ingredient> three(Pair<Ingredient> x, Pair<Ingredient> y) {
+  // First match
+  if (x.first == y.first) {
+    return [x.first, x.second, y.second];
+  }
+  // Outer
+  if (x.first == y.second) {
+    return [x.first, x.second, y.first];
+  }
+  // Inner
+  if (x.second == y.first) {
+    return [x.first, x.second, y.second];
+  }
+  // Last
+  if (x.second == y.second) {
+    return [x.first, x.second, y.first];
+  }
+  return null;
 }

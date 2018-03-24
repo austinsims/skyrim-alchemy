@@ -1,4 +1,5 @@
 import 'package:skyrim_alchemy/alchemy/alchemy.dart';
+import 'package:skyrim_alchemy/alchemy/common.dart';
 import 'package:skyrim_alchemy/alchemy/ingredients.dart';
 import 'package:test/test.dart';
 
@@ -103,6 +104,18 @@ void main() {
     var p2 = new Potion([ancestorMothWing, bearClaws]);
     expect(p1 == p2, isFalse);
     expect(p2 == p1, isFalse);
+  });
+
+  test("three function finds nothing when no common ingredients", () {
+    final x = new Pair<Ingredient>(ancestorMothWing, bearClaws);
+    final y = new Pair<Ingredient>(bee, glowDust);
+    expect(three(x, y), isNull);
+  });
+
+  test("three function finds ingredients when one in common", () {
+    final x = new Pair<Ingredient>(ancestorMothWing, bearClaws);
+    final y = new Pair<Ingredient>(bearClaws, bee);
+    expect(three(x, y), containsAllInOrder([ancestorMothWing, bearClaws, bee]));
   });
 
   test("two ingredient potions are found", () {
