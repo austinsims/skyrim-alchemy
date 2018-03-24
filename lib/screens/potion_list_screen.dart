@@ -29,6 +29,7 @@ class PotionListScreen extends StatelessWidget {
 
   Widget _buildList() {
     return new ListView.builder(
+      padding: const EdgeInsets.all(16.0),
       itemCount: potions.length * 2,
       itemBuilder: (context, i) {
         if (i.isOdd) return new Divider();
