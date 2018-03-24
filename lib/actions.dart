@@ -10,4 +10,9 @@ class DecIngredAction {
   DecIngredAction(this.ingredient);
 }
 
+class DecMultIngredAction {
+  final Iterable<Ingredient> ingredients;
+  DecMultIngredAction(this.ingredients);
+}
+
 class InitCountsAction {}

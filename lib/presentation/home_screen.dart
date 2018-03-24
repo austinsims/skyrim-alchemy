@@ -5,6 +5,7 @@ import 'package:skyrim_alchemy/actions.dart';
 import 'package:skyrim_alchemy/alchemy/common.dart';
 import 'package:skyrim_alchemy/alchemy/ingredients.dart';
 import 'package:skyrim_alchemy/model.dart';
+import 'package:skyrim_alchemy/routes.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key key}): super(key: key);
@@ -25,7 +26,7 @@ class HomeScreen extends StatelessWidget {
             )
           ),
           new IconButton(icon: new Icon(Icons.local_pharmacy), onPressed: () {
-            // TODO: Go to potion list route.
+            Navigator.pushNamed(context, Routes.potionList);
           }),
         ],
       ),
