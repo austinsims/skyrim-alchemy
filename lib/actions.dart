@@ -11,9 +11,11 @@ class DecIngredAction {
   DecIngredAction(this.ingredient);
 }
 
-class DecMultIngredAction {
-  final Iterable<Ingredient> ingredients;
-  DecMultIngredAction(this.ingredients);
+/// Brews N potions where N is as many as we can given the current ingredients.
+/// Decrements the ingredients.
+class BrewNPotionsAction {
+  final Potion potion;
+  BrewNPotionsAction(this.potion);
 }
 
 class SetIngredCountAction {

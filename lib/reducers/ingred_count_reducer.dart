@@ -8,7 +8,7 @@ final ingredCountReducer = combineTypedReducers<Map<Ingredient, int>>([
   new ReducerBinding<Map<Ingredient, int>, IncIngredAction>(_inc),
   new ReducerBinding<Map<Ingredient, int>, DecIngredAction>(_dec),
   new ReducerBinding<Map<Ingredient, int>, InitCountsAction>(_init),
-  new ReducerBinding<Map<Ingredient, int>, DecMultIngredAction>(_decMult),
+  new ReducerBinding<Map<Ingredient, int>, BrewNPotionsAction>(_brewNPotions),
   new ReducerBinding<Map<Ingredient, int>, SetIngredCountAction>(_setCount),
 ]);
 
@@ -24,10 +24,17 @@ Map<Ingredient, int> _dec(Map<Ingredient, int> state, DecIngredAction action) {
   return copy;
 }
 
-Map<Ingredient, int> _decMult(Map<Ingredient, int> state, DecMultIngredAction action) {
+Map<Ingredient, int> _brewNPotions(Map<Ingredient, int> state, BrewNPotionsAction action) {
+  // We can brew as many potions as we have count of the least plentiful
+  // ingredient. Sort by count, so the least plentiful will be the first.
+  final ingredients = action.potion.ingredients.toList();
+  ingredients.sort((a, b) => state[a].compareTo(state[b]));
+  final leastPlentiful = ingredients[0];
+  final times = state[leastPlentiful];
+
   var copy = new Map<Ingredient, int>.from(state);
-  for (var ingredient in action.ingredients) {
-    copy[ingredient] = max(0, copy[ingredient] - 1);
+  for (var ingredient in action.potion.ingredients) {
+    copy[ingredient] = max(0, copy[ingredient] - times);
   }
   return copy;
 }

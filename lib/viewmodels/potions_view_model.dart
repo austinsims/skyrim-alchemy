@@ -24,7 +24,7 @@ class PotionsViewModel {
       ingredCount: store.state.ingredCount,
       isLoading: store.state.isLoading,
       onBrew: (potion) {
-        store.dispatch(new DecMultIngredAction(potion.ingredients));
+        store.dispatch(new BrewNPotionsAction(potion));
       }
     );
   }
