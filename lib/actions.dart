@@ -16,6 +16,12 @@ class DecMultIngredAction {
   DecMultIngredAction(this.ingredients);
 }
 
+class SetIngredCountAction {
+  final Ingredient ingredient;
+  final int count;
+  SetIngredCountAction(this.ingredient, this.count);
+}
+
 class InitCountsAction {}
 
 class SetPotionsAction {

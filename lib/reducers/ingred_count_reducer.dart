@@ -9,6 +9,7 @@ final ingredCountReducer = combineTypedReducers<Map<Ingredient, int>>([
   new ReducerBinding<Map<Ingredient, int>, DecIngredAction>(_dec),
   new ReducerBinding<Map<Ingredient, int>, InitCountsAction>(_init),
   new ReducerBinding<Map<Ingredient, int>, DecMultIngredAction>(_decMult),
+  new ReducerBinding<Map<Ingredient, int>, SetIngredCountAction>(_setCount),
 ]);
 
 Map<Ingredient, int> _inc(Map<Ingredient, int> state, IncIngredAction action) {
@@ -28,6 +29,13 @@ Map<Ingredient, int> _decMult(Map<Ingredient, int> state, DecMultIngredAction ac
   for (var ingredient in action.ingredients) {
     copy[ingredient] = max(0, copy[ingredient] - 1);
   }
+  return copy;
+}
+
+Map<Ingredient, int> _setCount(Map<Ingredient, int> state, SetIngredCountAction action) {
+  assert(action.count != null);
+  var copy = new Map<Ingredient, int>.from(state);
+  copy[action.ingredient] = action.count;
   return copy;
 }
 

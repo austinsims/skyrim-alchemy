@@ -18,6 +18,7 @@ class HomePageContainer extends StatelessWidget {
         ingredCount: vm.ingredCount,
         onIncrement: vm.onIncrement,
         onDecrement: vm.onDecrement,
+        onSetIngredCount: vm.onSetIngredCount,
         onClearAll: vm.onClearAll,
       ),
     );
@@ -28,12 +29,14 @@ class _ViewModel {
   Map<Ingredient, int> ingredCount;
   Function(Ingredient) onIncrement;
   Function(Ingredient) onDecrement;
+  Function(Ingredient, int) onSetIngredCount;
   Function onClearAll;
 
   _ViewModel({
     @required this.ingredCount,
     @required this.onIncrement,
     @required this.onDecrement,
+    @required this.onSetIngredCount,
     @required this.onClearAll,
   });
 
@@ -45,6 +48,9 @@ class _ViewModel {
       },
       onDecrement: (ingredient) {
         store.dispatch(new DecIngredAction(ingredient));
+      },
+      onSetIngredCount: (ingredient, count) {
+        store.dispatch(new SetIngredCountAction(ingredient, count));
       },
       onClearAll: () {
         store.dispatch(new InitCountsAction());
