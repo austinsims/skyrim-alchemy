@@ -2,8 +2,8 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:skyrim_alchemy/actions.dart';
 import 'package:skyrim_alchemy/model.dart';
-import 'package:skyrim_alchemy/containers/home_page_container.dart';
-import 'package:skyrim_alchemy/containers/potion_list_container.dart';
+import 'package:skyrim_alchemy/containers/home_container.dart';
+import 'package:skyrim_alchemy/containers/potions_container.dart';
 import 'package:skyrim_alchemy/routes.dart';
 import 'package:skyrim_alchemy/store.dart';
 
@@ -27,12 +27,12 @@ class App extends StatelessWidget {
             return new StoreBuilder<AppState>(
               onInit: (store) => store.dispatch(new InitCountsAction()),
               builder: (context, store) {
-                return new HomePageContainer();
+                return new HomeContainer();
               }
             );
           },
           Routes.potionList: (context) {
-            return new PotionListContainer();
+            return new PotionsContainer();
           }
         },
       ),

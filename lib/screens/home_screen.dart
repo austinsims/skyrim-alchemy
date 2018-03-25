@@ -5,14 +5,14 @@ import 'package:skyrim_alchemy/alchemy/common.dart';
 import 'package:skyrim_alchemy/alchemy/ingredients.dart';
 import 'package:skyrim_alchemy/routes.dart';
 
-class HomePageScreen extends StatelessWidget {
+class HomeScreen extends StatelessWidget {
   final Map<Ingredient, int> ingredCount;
   final Function(Ingredient) onIncrement;
   final Function(Ingredient) onDecrement;
   final Function(Ingredient, int) onSetIngredCount;
   final Function onClearAll;
 
-  HomePageScreen({
+  HomeScreen({
     @required this.ingredCount,
     @required this.onIncrement,
     @required this.onDecrement,

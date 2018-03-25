@@ -5,16 +5,16 @@ import 'package:redux/redux.dart';
 import 'package:skyrim_alchemy/actions.dart';
 import 'package:skyrim_alchemy/alchemy/common.dart';
 import 'package:skyrim_alchemy/model.dart';
-import 'package:skyrim_alchemy/screens/home_page_screen.dart';
+import 'package:skyrim_alchemy/screens/home_screen.dart';
 
-class HomePageContainer extends StatelessWidget {
-  HomePageContainer({Key key}): super(key: key);
+class HomeContainer extends StatelessWidget {
+  HomeContainer({Key key}): super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return new StoreConnector<AppState, _ViewModel>(
       converter: (store) => new _ViewModel.from(store),
-      builder: (context, vm) => new HomePageScreen(
+      builder: (context, vm) => new HomeScreen(
         ingredCount: vm.ingredCount,
         onIncrement: vm.onIncrement,
         onDecrement: vm.onDecrement,

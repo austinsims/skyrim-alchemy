@@ -6,16 +6,16 @@ import 'package:skyrim_alchemy/actions.dart';
 import 'package:skyrim_alchemy/alchemy/alchemy.dart';
 import 'package:skyrim_alchemy/alchemy/common.dart';
 import 'package:skyrim_alchemy/model.dart';
-import 'package:skyrim_alchemy/screens/potion_list_screen.dart';
+import 'package:skyrim_alchemy/screens/potions_screen.dart';
 
-class PotionListContainer extends StatelessWidget {
-  PotionListContainer({Key key}): super(key: key);
+class PotionsContainer extends StatelessWidget {
+  PotionsContainer({Key key}): super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return new StoreConnector<AppState, _ViewModel>(
       converter: (store) => new _ViewModel.from(store),
-      builder: (context, vm) => new PotionListScreen(
+      builder: (context, vm) => new PotionsScreen(
         potions: vm.potions,
         ingredCount: vm.ingredCount,
         isLoading: vm.isLoading,
