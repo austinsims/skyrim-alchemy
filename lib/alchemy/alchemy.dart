@@ -123,7 +123,8 @@ Iterable<Ingredient> three(Pair<Ingredient> x, Pair<Ingredient> y) {
 Set<Effect> _computeEffects(Iterable<Ingredient> ingredients) {
   var allIngredientEffects = new Set.identity();
   for (var ingredient in ingredients) {
-    allIngredientEffects = allIngredientEffects.union(ingredient.effects);
+    allIngredientEffects =
+        allIngredientEffects.union(ingredient.effects.toSet());
   }
 
   var effects = new Set.identity();

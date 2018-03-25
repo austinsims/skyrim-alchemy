@@ -1,9 +1,12 @@
-import 'package:skyrim_alchemy/model.dart';
+import 'dart:async';
+import 'dart:isolate';
 import 'package:redux/redux.dart';
-import 'package:skyrim_alchemy/reducers/app_reducer.dart';
-import 'package:skyrim_alchemy/alchemy/alchemy.dart';
 import 'package:skyrim_alchemy/actions.dart';
+import 'package:skyrim_alchemy/alchemy/alchemy.dart';
+import 'package:skyrim_alchemy/alchemy/common.dart';
 import 'package:skyrim_alchemy/alchemy/ingredients.dart';
+import 'package:skyrim_alchemy/model.dart';
+import 'package:skyrim_alchemy/reducers/app_reducer.dart';
 
 const POTIONS_SHOWN_COUNT = 7;
 
@@ -16,7 +19,7 @@ Store<AppState> createStore() {
 
   // Whenever ingredient list changes, recompute potions.
   var lastIngredCount = initialState.ingredCount;
-  store.onChange.listen((appState) {
+  store.onChange.listen((appState) async {
     // If ingredients haven't changed, don't do anything.
     if (appState.ingredCount == lastIngredCount) return;
     lastIngredCount = appState.ingredCount;
@@ -24,10 +27,38 @@ Store<AppState> createStore() {
     var heldIngredients = allIngredients
         .where((i) => appState.ingredCount[i] > 0)
         .toList();
-    final potions = findPotions(heldIngredients).take(POTIONS_SHOWN_COUNT).toList();
+    final potions =
+        (await _findPotionsIsolate(heldIngredients))
+        .take(POTIONS_SHOWN_COUNT)
+        .toList();
 
     store.dispatch(new SetPotionsAction(potions));
   });
 
   return store;
+}
+
+Future<List<Potion>> _findPotionsIsolate(List<Ingredient> ingredients) async {
+  ReceivePort receivePort = new ReceivePort();
+  await Isolate.spawn(isolateEntryPoint, receivePort.sendPort);
+  SendPort sendPort = await receivePort.first;
+  List<Potion> potions = await sendReceive(sendPort, ingredients);
+  return potions;
+}
+
+void isolateEntryPoint(SendPort sendPort) async {
+  ReceivePort receivePort = new ReceivePort();
+  sendPort.send(receivePort.sendPort);
+  await for (var msg in receivePort) {
+    List<Ingredient> ingredients = msg[0];
+    SendPort replyTo = msg[1];
+    var potions = findPotions(ingredients);
+    replyTo.send(potions);
+  }
+}
+
+Future sendReceive(SendPort port, msg) {
+  ReceivePort response = new ReceivePort();
+  port.send([msg, response.sendPort]);
+  return response.first;
 }
