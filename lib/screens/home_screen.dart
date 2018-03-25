@@ -1,24 +1,14 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:numberpicker/numberpicker.dart';
 import 'package:skyrim_alchemy/alchemy/common.dart';
 import 'package:skyrim_alchemy/alchemy/ingredients.dart';
 import 'package:skyrim_alchemy/routes.dart';
+import 'package:skyrim_alchemy/viewmodels/home_view_model.dart';
 
 class HomeScreen extends StatelessWidget {
-  final Map<Ingredient, int> ingredCount;
-  final Function(Ingredient) onIncrement;
-  final Function(Ingredient) onDecrement;
-  final Function(Ingredient, int) onSetIngredCount;
-  final Function onClearAll;
+  final HomeViewModel vm;
 
-  HomeScreen({
-    @required this.ingredCount,
-    @required this.onIncrement,
-    @required this.onDecrement,
-    @required this.onSetIngredCount,
-    @required this.onClearAll,
-  });
+  HomeScreen(this.vm);
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +18,7 @@ class HomeScreen extends StatelessWidget {
         actions: [
           new IconButton(
             icon: new Icon(Icons.clear_all),
-            onPressed: onClearAll,
+            onPressed: vm.onClearAll,
           ),
         ],
       ),
@@ -57,7 +47,7 @@ class HomeScreen extends StatelessWidget {
   Widget _buildRow(BuildContext context, Ingredient ingredient) {
     // BUG: When count is 2 digits, add/remove buttons go out of line.
 
-    final int currentCount = ingredCount[ingredient];
+    final int currentCount = vm.ingredCount[ingredient];
 
     _showDialog() {
       showDialog(
@@ -70,7 +60,7 @@ class HomeScreen extends StatelessWidget {
         ),
       ).then((newCount) {
         if (newCount == null) return;
-        onSetIngredCount(ingredient, newCount);
+        vm.onSetIngredCount(ingredient, newCount);
       });
     }
 
@@ -79,7 +69,7 @@ class HomeScreen extends StatelessWidget {
       trailing: new Row(children: [
         new IconButton(
           icon: new Icon(Icons.remove),
-          onPressed: () => onDecrement(ingredient),
+          onPressed: () => vm.onDecrement(ingredient),
         ),
         new Container(
           width: 52.0,
@@ -90,7 +80,7 @@ class HomeScreen extends StatelessWidget {
         ),
         new IconButton(
           icon: new Icon(Icons.add),
-          onPressed: () => onIncrement(ingredient),
+          onPressed: () => vm.onIncrement(ingredient),
         ),
       ]),
     );

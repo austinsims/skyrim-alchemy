@@ -1,36 +1,28 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:skyrim_alchemy/alchemy/alchemy.dart';
 import 'package:skyrim_alchemy/alchemy/common.dart';
+import 'package:skyrim_alchemy/viewmodels/potions_view_model.dart';
 
 class PotionsScreen extends StatelessWidget {
-  final List<Potion> potions;
-  final Map<Ingredient, int> ingredCount;
-  final bool isLoading;
-  final Function(Potion) onBrew;
+  final PotionsViewModel vm;
 
-  PotionsScreen({
-    @required this.potions,
-    @required this.ingredCount,
-    @required this.isLoading,
-    @required this.onBrew,
-  });
+  PotionsScreen(this.vm);
 
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(title: new Text('Potions')),
-      body: potions.isEmpty ? _buildEmptyMessage() : _buildBody(),
+      body: vm.potions.isEmpty ? _buildEmptyMessage() : _buildBody(),
     );
   }
 
   Widget _buildBody() {
       return new Column(children: [
         new Opacity(
-          opacity: isLoading ? 1.0 : 0.0,
+          opacity: vm.isLoading ? 1.0 : 0.0,
           child: new LinearProgressIndicator()
         ),
         new Opacity(
-          opacity: isLoading ? 0.7 : 1.0,
+          opacity: vm.isLoading ? 0.7 : 1.0,
           child: _buildTable(),
         ),
       ]);
@@ -44,7 +36,7 @@ class PotionsScreen extends StatelessWidget {
 
   Widget _buildTable() {
     return new Table(
-      children: potions.map(_buildRow).toList(),
+      children: vm.potions.map(_buildRow).toList(),
       columnWidths: {
         0: new FractionColumnWidth(0.28),
         1: new FractionColumnWidth(0.55),
@@ -72,7 +64,7 @@ class PotionsScreen extends StatelessWidget {
             padding: new EdgeInsets.all(12.0),
             child: new Column(
               children: sortedIngredients
-                  .map((i) => new Text('${i.name} (${ingredCount[i]})'))
+                  .map((i) => new Text('${i.name} (${vm.ingredCount[i]})'))
                   .toList(),
               crossAxisAlignment: CrossAxisAlignment.start,
             )
@@ -82,7 +74,7 @@ class PotionsScreen extends StatelessWidget {
           child: new Padding(
             padding: new EdgeInsets.all(12.0), child: new IconButton(
               icon: new Icon(Icons.check),
-              onPressed: () => onBrew(potion),
+              onPressed: () => vm.onBrew(potion),
             )
           )
         ),
