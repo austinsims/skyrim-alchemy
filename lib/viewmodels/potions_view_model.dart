@@ -1,13 +1,14 @@
+import 'package:built_collection/built_collection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:redux/redux.dart';
 import 'package:skyrim_alchemy/actions.dart';
-import 'package:skyrim_alchemy/model.dart';
 import 'package:skyrim_alchemy/alchemy/alchemy.dart';
 import 'package:skyrim_alchemy/alchemy/common.dart';
+import 'package:skyrim_alchemy/model.dart';
 
 class PotionsViewModel {
   final List<Potion> potions;
-  final Map<Ingredient, int> ingredCount;
+  final BuiltMap<Ingredient, int> ingredCount;
   final bool isLoading;
   final Function(Potion) onBrew;
 
