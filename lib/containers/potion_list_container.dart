@@ -18,6 +18,7 @@ class PotionListContainer extends StatelessWidget {
       builder: (context, vm) => new PotionListScreen(
         potions: vm.potions,
         ingredCount: vm.ingredCount,
+        isLoading: vm.isLoading,
         onBrew: vm.onBrew,
       ),
     );
@@ -27,11 +28,13 @@ class PotionListContainer extends StatelessWidget {
 class _ViewModel {
   final List<Potion> potions;
   final Map<Ingredient, int> ingredCount;
+  final bool isLoading;
   final Function(Potion) onBrew;
 
   _ViewModel({
     @required this.potions,
     @required this.ingredCount,
+    @required this.isLoading,
     @required this.onBrew
   });
 
@@ -39,6 +42,7 @@ class _ViewModel {
     return new _ViewModel(
       potions: store.state.potions,
       ingredCount: store.state.ingredCount,
+      isLoading: store.state.isLoading,
       onBrew: (potion) {
         store.dispatch(new DecMultIngredAction(potion.ingredients));
       }

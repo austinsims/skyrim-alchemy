@@ -6,13 +6,17 @@ import 'package:skyrim_alchemy/alchemy/alchemy.dart';
 class AppState {
   final Map<Ingredient, int> ingredCount;
   final List<Potion> potions;
+  final bool isLoading;
 
   AppState({
     this.ingredCount = const {},
-    this.potions = const []});
+    this.potions = const [],
+    this.isLoading,
+  });
 
   @override
-  int get hashCode => ingredCount.hashCode ^ potions.hashCode;
+  int get hashCode =>
+      ingredCount.hashCode ^ potions.hashCode ^ isLoading.hashCode;
 
   @override
   bool operator ==(Object other) =>
@@ -20,5 +24,6 @@ class AppState {
     other is AppState &&
       runtimeType == other.runtimeType &&
       ingredCount == other.ingredCount &&
-      potions == other.potions;
+      potions == other.potions &&
+      isLoading == other.isLoading;
 }

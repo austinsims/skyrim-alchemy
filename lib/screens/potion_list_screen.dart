@@ -6,19 +6,34 @@ import 'package:skyrim_alchemy/alchemy/common.dart';
 class PotionListScreen extends StatelessWidget {
   final List<Potion> potions;
   final Map<Ingredient, int> ingredCount;
+  final bool isLoading;
   final Function(Potion) onBrew;
 
   PotionListScreen({
     @required this.potions,
     @required this.ingredCount,
+    @required this.isLoading,
     @required this.onBrew,
   });
 
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(title: new Text('Potions')),
-      body: potions.isEmpty ? _buildEmptyMessage() : _buildTable(),
+      body: potions.isEmpty ? _buildEmptyMessage() : _buildBody(),
     );
+  }
+
+  Widget _buildBody() {
+      return new Column(children: [
+        new Opacity(
+          opacity: isLoading ? 1.0 : 0.0,
+          child: new LinearProgressIndicator()
+        ),
+        new Opacity(
+          opacity: isLoading ? 0.7 : 1.0,
+          child: _buildTable(),
+        ),
+      ]);
   }
 
   Widget _buildEmptyMessage() {

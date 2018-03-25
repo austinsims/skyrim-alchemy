@@ -22,3 +22,7 @@ class SetPotionsAction {
   final List<Potion> potions;
   SetPotionsAction(this.potions);
 }
+
+class StartLoadingAction {}
+
+class StopLoadingAction {}

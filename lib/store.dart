@@ -24,6 +24,9 @@ Store<AppState> createStore() {
     if (appState.ingredCount == lastIngredCount) return;
     lastIngredCount = appState.ingredCount;
 
+    // Begin loading.
+    store.dispatch(new StartLoadingAction());
+
     var heldIngredients = allIngredients
         .where((i) => appState.ingredCount[i] > 0)
         .toList();
@@ -32,7 +35,9 @@ Store<AppState> createStore() {
         .take(POTIONS_SHOWN_COUNT)
         .toList();
 
+    // Fill potions and stop loading.
     store.dispatch(new SetPotionsAction(potions));
+    store.dispatch(new StopLoadingAction());
   });
 
   return store;
