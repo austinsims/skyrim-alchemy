@@ -1,8 +1,8 @@
+import 'dart:math' show max;
 import 'package:redux/redux.dart';
 import 'package:skyrim_alchemy/actions.dart';
 import 'package:skyrim_alchemy/alchemy/common.dart';
 import 'package:skyrim_alchemy/alchemy/ingredients.dart';
-import 'dart:math' show max;
 
 final ingredCountReducer = combineTypedReducers<Map<Ingredient, int>>([
   new ReducerBinding<Map<Ingredient, int>, IncIngredAction>(_inc),
