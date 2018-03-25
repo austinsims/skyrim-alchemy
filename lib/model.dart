@@ -11,7 +11,7 @@ class AppState {
   AppState({
     this.ingredCount = const {},
     this.potions = const [],
-    this.isLoading,
+    this.isLoading = false,
   });
 
   @override
