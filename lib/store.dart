@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:isolate';
 import 'package:redux/redux.dart';
+import 'package:rxdart/transformers.dart';
 import 'package:skyrim_alchemy/actions.dart';
 import 'package:skyrim_alchemy/alchemy/alchemy.dart';
 import 'package:skyrim_alchemy/alchemy/common.dart';
@@ -19,7 +20,12 @@ Store<AppState> createStore() {
 
   // Whenever ingredient list changes, recompute potions.
   var lastIngredCount = initialState.ingredCount;
-  store.onChange.listen((appState) async {
+
+  // Debounce potion computations since it's expensive; spawning many Isolates
+  // at once can bust the heap and crash the app.
+  var debounceTransformer = new DebounceStreamTransformer<AppState>(
+      new Duration(milliseconds: 300));
+  store.onChange.transform(debounceTransformer).listen((appState) async {
     // If ingredients haven't changed, don't do anything.
     if (appState.ingredCount == lastIngredCount) return;
     lastIngredCount = appState.ingredCount;
