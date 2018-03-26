@@ -82,14 +82,24 @@ List<Potion> findPotions(List<Ingredient> ingredients) {
 }
 
 void sortPotions(List<Potion> potions) {
+  int iVal(Potion p) => _sum(p.ingredients.map((i) => i.value));
+
   potions.sort((a, b) {
+    // Sort first by sale value.
     if (a.value > b.value) {
       return -1;
     } else if (b.value > a.value) {
       return 1;
+    // Next by number of ingredients required. Fewer is better since it takes
+    // less time to select them in the menu.
     } else if (a.ingredients.length < b.ingredients.length) {
       return -11;
     } else if (b.ingredients.length < a.ingredients.length) {
+      return 1;
+    // Last by value of ingredients.
+    } else if (iVal(a) < iVal(b)) {
+      return -1;
+    } else if (iVal(b) < iVal(a)) {
       return 1;
     }
     return 0;

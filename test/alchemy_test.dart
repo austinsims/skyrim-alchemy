@@ -24,6 +24,11 @@ final threePotionC =
     new Potion([abeceanLongfin, beehiveHusk, charredSkeeverHide]);
 final threePotionD = new Potion([bearClaws, bee, charredSkeeverHide]);
 
+// Potions all worth the same but whose ingredients are worth different amounts.
+final potionCosts20 = new Potion([nightshade, wispWrappings, jarrinRoot]);
+final potionCosts23 = new Potion([beehiveHusk, nightshade, jarrinRoot]);
+final potionCosts43 = new Potion([ectoplasm, nightshade, jarrinRoot]);
+
 void main() {
   test("sorts empty list", () {
     var potions = [];
@@ -70,6 +75,21 @@ void main() {
       twoPotion118,
       threePotion118,
       threePotion24,
+    ];
+    sortPotions(potions);
+    expect(potions, equals(sorted));
+  });
+
+  test('sort equal gold value & ingred count but varying ingred value', () {
+    var potions = [
+      potionCosts43,
+      potionCosts20,
+      potionCosts23,
+    ];
+    var sorted = [
+      potionCosts20,
+      potionCosts23,
+      potionCosts43,
     ];
     sortPotions(potions);
     expect(potions, equals(sorted));
