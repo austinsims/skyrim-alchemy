@@ -51,10 +51,9 @@ Store<AppState> createStore() {
 
 Future<List<Potion>> _findPotionsIsolate(List<Ingredient> ingredients) async {
   ReceivePort receivePort = new ReceivePort();
-  final isolate = await Isolate.spawn(isolateEntryPoint, receivePort.sendPort);
+  await Isolate.spawn(isolateEntryPoint, receivePort.sendPort);
   SendPort sendPort = await receivePort.first;
   List<Potion> potions = await sendReceive(sendPort, ingredients);
-  isolate.kill();
   return potions;
 }
 
@@ -66,6 +65,7 @@ void isolateEntryPoint(SendPort sendPort) async {
     SendPort replyTo = msg[1];
     var potions = findPotions(ingredients);
     replyTo.send(potions);
+    Isolate.current.kill();
   }
 }
 
