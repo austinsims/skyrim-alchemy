@@ -22,7 +22,7 @@ class PotionsScreen extends StatelessWidget {
           child: new LinearProgressIndicator()
         ),
         new Opacity(
-          opacity: vm.isLoading ? 0.7 : 1.0,
+          opacity: vm.isLoading ? 0.5 : 1.0,
           child: _buildTable(),
         ),
       ]);
@@ -63,8 +63,12 @@ class PotionsScreen extends StatelessWidget {
           child: new Padding(
             padding: new EdgeInsets.all(12.0),
             child: new Column(
-              children: sortedIngredients
-                  .map((i) => new Text('${i.name} (${vm.ingredCount[i]})'))
+              children: sortedIngredients.map((i) => new Text(
+                    '${i.name} (${vm.ingredCount[i]})',
+                    style: vm.ingredCount[i] == 0 ?
+                        new TextStyle(decoration: TextDecoration.lineThrough) :
+                        new TextStyle(),
+                  ))
                   .toList(),
               crossAxisAlignment: CrossAxisAlignment.start,
             )
