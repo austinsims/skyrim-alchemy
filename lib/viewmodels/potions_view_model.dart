@@ -25,6 +25,7 @@ class PotionsViewModel {
       ingredCount: store.state.ingredCount,
       isLoading: store.state.isLoading,
       onBrew: (potion) {
+        if (store.state.isLoading) return;
         store.dispatch(new BrewNPotionsAction(potion));
       }
     );
