@@ -1,8 +1,6 @@
 import 'common.dart';
 import 'effects.dart';
 
-// TODO: Change all the "new Map.fromIterables" to map literals.
-
 var abeceanLongfin = new Ingredient(
     "Abecean Longfin",
     new Set.from(
@@ -90,7 +88,7 @@ var canisRoot = new Ingredient(
 var charredSkeeverHide = new Ingredient(
     "Charred Skeever Hide",
     new Set.from([cureDisease, resistPoison, restoreHealth, restoreStamina]),
-    new Map.fromIterables([cureDisease], [0.36]));
+    {cureDisease:0.36});
 var chaurusEggs = new Ingredient(
     "Chaurus Eggs",
     new Set.from(
@@ -128,7 +126,7 @@ var daedraHeart = new Ingredient("Daedra Heart",
 var deathbell = new Ingredient(
     "Deathbell",
     new Set.from([damageHealth, ravageStamina, slow, weaknessToPoison]),
-    new Map.fromIterables([ravageStamina], [2.1]));
+    {ravageStamina: 2.1});
 var dragonsTongue = new Ingredient(
     "Dragon's Tongue",
     new Set.from(
@@ -185,7 +183,7 @@ var giantsToe = new Ingredient(
     fortifyCarryWeight,
     fortifyHealth,
   ]),
-  new Map.fromIterables([fortifyHealth], [5.9]),
+  {fortifyHealth: 5.9},
 );
 var gleamblossom = new Ingredient("Gleamblossom",
     new Set.from([fear, paralysis, regenerateHealth, resistMagic]));
@@ -223,7 +221,7 @@ var hawkFeathers = new Ingredient(
     "Hawk Feathers",
     new Set.from(
         [cureDisease, fortifyLightArmor, fortifyOneHanded, fortifySneak]),
-    new Map.fromIterables([cureDisease], [0.36]));
+    {cureDisease: 0.36});
 var hawksEgg = new Ingredient(
     "Hawk's Egg",
     new Set.from([
@@ -307,7 +305,7 @@ var nightshade = new Ingredient(
 var nirnroot = new Ingredient(
     "Nirnroot",
     new Set.from([damageHealth, damageStamina, invisibility, resistMagic]),
-    new Map.fromIterables([damageHealth], [12.6]));
+    {damageHealth: 12.6});
 var nordicBarnacle = new Ingredient(
     "Nordic Barnacle",
     new Set.from(
@@ -356,7 +354,7 @@ var salmonRoe = new Ingredient(
     "Salmon Roe",
     new Set.from(
         [fortifyMagicka, regenerateMagicka, restoreStamina, waterbreathing]),
-    new Map.fromIterables([waterbreathing, fortifyMagicka], [15.4, 1.05]));
+    {waterbreathing: 15.4, fortifyMagicka: 1.05});
 var saltPile = new Ingredient(
     "Salt Pile",
     new Set.from(
