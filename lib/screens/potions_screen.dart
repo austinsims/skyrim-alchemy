@@ -76,8 +76,10 @@ class PotionsScreen extends StatelessWidget {
         ),
         new TableCell(
           child: new Padding(
-            padding: new EdgeInsets.all(12.0), child: new IconButton(
-              icon: new Icon(Icons.check),
+            padding: new EdgeInsets.all(12.0),
+            child: new RaisedButton(
+              padding: new EdgeInsets.all(0.0),
+              child: new Icon(Icons.check),
               onPressed: () => vm.onBrew(potion),
             )
           )
