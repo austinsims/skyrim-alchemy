@@ -1,8 +1,10 @@
 import 'package:built_collection/built_collection.dart';
+import 'package:meta/meta.dart';
 
+@immutable
 class Effect {
-  num value;
-  String name;
+  final num value;
+  final String name;
 
   Effect(this.name, this.value);
 
@@ -20,20 +22,16 @@ class Effect {
   int get hashCode => value.hashCode ^ name.hashCode;
 }
 
+@immutable
 class Ingredient {
-  BuiltSet<Effect> effects;
-  String name;
-  BuiltMap<Effect, num> multipliers;
+  final BuiltSet<Effect> effects;
+  final String name;
+  final BuiltMap<Effect, num> multipliers;
 
-  Ingredient(String name, Set<Effect> effects, [Map<Effect, num> multipliers]) {
-    this.name = name;
-    this.effects = new BuiltSet<Effect>(effects);
-    if (multipliers != null) {
-      this.multipliers = new BuiltMap<Effect, num>(multipliers);
-    } else {
-      this.multipliers = new BuiltMap<Effect, num>();
-    }
-  }
+  Ingredient(String name, Set<Effect> effects, [Map<Effect, num> multipliers]) :
+      name = name,
+      effects = new BuiltSet<Effect>(effects),
+      multipliers = new BuiltMap<Effect, num>(multipliers ?? <Effect, num>{});
 
   toString() => this.name;
 
