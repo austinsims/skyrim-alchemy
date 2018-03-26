@@ -33,26 +33,30 @@ void main() {
 
   test('ingredients inequal when totally different', () {
     var i1 = new Ingredient(
-        'Tentacle',
-        new Set.from([cureDisease, damageHealth]),
-        {cureDisease: 2.5});
+        name: 'Tentacle',
+        effects: new Set.from([cureDisease, damageHealth]),
+        multipliers: {cureDisease: 2.5},
+        value: 17);
     var i2 = new Ingredient(
-        'Fart',
-        new Set.from([frenzy, fear]),
-        {fear: 0.9});
+        name: 'Fart',
+        effects: new Set.from([frenzy, fear]),
+        multipliers: {fear: 0.9},
+        value: 22);
     expect(i1 == i2, isFalse);
     expect(i2 == i1, isFalse);
   });
 
   test('ingredients equal with everything the same', () {
     var i1 = new Ingredient(
-        'Tentacle',
-        new Set.from([cureDisease, damageHealth]),
-        {cureDisease: 2.5});
+        name: 'Tentacle',
+        effects: new Set.from([cureDisease, damageHealth]),
+        multipliers: {cureDisease: 2.5},
+        value: 10);
     var i2 = new Ingredient(
-        'Tentacle',
-        new Set.from([cureDisease, damageHealth]),
-        {cureDisease: 2.5});
+        name: 'Tentacle',
+        effects: new Set.from([cureDisease, damageHealth]),
+        multipliers: {cureDisease: 2.5},
+        value: 10);
     expect(i1 == i2, isTrue);
     expect(i2 == i1, isTrue);
   });

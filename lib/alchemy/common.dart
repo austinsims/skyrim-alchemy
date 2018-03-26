@@ -14,10 +14,10 @@ class Effect {
   bool operator ==(Object other) =>
       identical(this, other) ||
       runtimeType == other.runtimeType &&
-      other is Effect &&
-      value == other.value &&
-      name == other.name;
-  
+          other is Effect &&
+          value == other.value &&
+          name == other.name;
+
   @override
   int get hashCode => value.hashCode ^ name.hashCode;
 }
@@ -26,12 +26,23 @@ class Effect {
 class Ingredient {
   final BuiltSet<Effect> effects;
   final String name;
+  final int value;
   final BuiltMap<Effect, num> multipliers;
 
-  Ingredient(String name, Set<Effect> effects, [Map<Effect, num> multipliers]) :
-      name = name,
-      effects = new BuiltSet<Effect>(effects),
-      multipliers = new BuiltMap<Effect, num>(multipliers ?? <Effect, num>{});
+  Ingredient(
+      {String name,
+      Set<Effect> effects,
+      int value,
+      Map<Effect, num> multipliers: const {}})
+      : name = name,
+        effects = new BuiltSet<Effect>(effects),
+        value = value,
+        multipliers = new BuiltMap<Effect, num>(multipliers) {
+    for (final effect in multipliers.keys) {
+      assert(effects.contains(effect),
+          'Cannot add multiplier for effect $effect which is not contained in effects set');
+    }
+  }
 
   toString() => this.name;
 
@@ -39,11 +50,13 @@ class Ingredient {
   operator ==(Object other) =>
       identical(this, other) ||
       runtimeType == other.runtimeType &&
-      other is Ingredient &&
-      effects == other.effects &&
-      name == other.name &&
-      multipliers == other.multipliers;
+          other is Ingredient &&
+          effects == other.effects &&
+          name == other.name &&
+          value == other.value &&
+          multipliers == other.multipliers;
 
   @override
-  int get hashCode => effects.hashCode ^ name.hashCode ^ multipliers.hashCode;
+  int get hashCode =>
+      effects.hashCode ^ name.hashCode ^ value.hashCode ^ multipliers.hashCode;
 }

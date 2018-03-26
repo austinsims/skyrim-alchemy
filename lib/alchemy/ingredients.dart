@@ -2,481 +2,640 @@ import 'common.dart';
 import 'effects.dart';
 
 final abeceanLongfin = new Ingredient(
-    "Abecean Longfin",
-    new Set.from(
-        [fortifyRestoration, fortifySneak, weaknessToFrost, weaknessToPoison]));
+    name: "Abecean Longfin",
+    effects: new Set.from(
+        [fortifyRestoration, fortifySneak, weaknessToFrost, weaknessToPoison]),
+    value: 15);
 final ancestorMothWing = new Ingredient(
-    "Ancestor Moth Wing",
-    new Set.from([
+    name: "Ancestor Moth Wing",
+    effects: new Set.from([
       damageMagickaRegen,
       damageStamina,
       fortifyConjuration,
       fortifyEnchanting
-    ]));
+    ]),
+    value: 2);
 final ashCreepCluster = new Ingredient(
-    "Ash Creep Cluster",
-    new Set.from(
-        [damageStamina, fortifyDestruction, invisibility, resistFire]));
+    name: "Ash Creep Cluster",
+    effects: new Set.from(
+        [damageStamina, fortifyDestruction, invisibility, resistFire]),
+    value: 20);
 final ashenGrassPod = new Ingredient(
-    "Ashen Grass Pod",
-    new Set.from(
-        [fortifyLockpicking, fortifySneak, resistFire, weaknessToShock]));
+    name: "Ashen Grass Pod",
+    effects: new Set.from(
+        [fortifyLockpicking, fortifySneak, resistFire, weaknessToShock]),
+    value: 1);
 final ashHopperJelly = new Ingredient(
-    "Ash Hopper Jelly",
-    new Set.from(
-        [fortifyLightArmor, resistShock, restoreHealth, weaknessToFrost]));
+    name: "Ash Hopper Jelly",
+    effects: new Set.from(
+        [fortifyLightArmor, resistShock, restoreHealth, weaknessToFrost]),
+    value: 20);
 final bearClaws = new Ingredient(
-    "Bear Claws",
-    new Set.from(
-        [damageMagickaRegen, fortifyHealth, fortifyOneHanded, restoreStamina]));
+    name: "Bear Claws",
+    effects: new Set.from(
+        [damageMagickaRegen, fortifyHealth, fortifyOneHanded, restoreStamina]),
+    value: 2);
 final bee = new Ingredient(
-    "Bee",
-    new Set.from(
-        [ravageStamina, regenerateStamina, restoreStamina, weaknessToShock]));
+    name: "Bee",
+    effects: new Set.from(
+        [ravageStamina, regenerateStamina, restoreStamina, weaknessToShock]),
+    value: 3);
 final beehiveHusk = new Ingredient(
-    "Beehive Husk",
-    new Set.from(
-        [fortifyDestruction, fortifyLightArmor, fortifySneak, resistPoison]));
+    name: "Beehive Husk",
+    effects: new Set.from(
+        [fortifyDestruction, fortifyLightArmor, fortifySneak, resistPoison]),
+    value: 5);
 final beritsAshes = new Ingredient(
-    "Berit's Ashes",
-    new Set.from(
-        [damageStamina, fortifyConjuration, ravageStamina, resistFire]));
+    name: "Berit's Ashes",
+    effects: new Set.from(
+        [damageStamina, fortifyConjuration, ravageStamina, resistFire]),
+    value: 5);
 final bleedingCrown = new Ingredient(
-    "Bleeding Crown",
-    new Set.from(
-        [fortifyBlock, resistMagic, weaknessToFire, weaknessToPoison]));
-final blisterwort = new Ingredient("Blisterwort",
-    new Set.from([damageStamina, fortifySmithing, frenzy, restoreHealth]));
+    name: "Bleeding Crown",
+    effects: new Set.from(
+        [fortifyBlock, resistMagic, weaknessToFire, weaknessToPoison]),
+    value: 10);
+final blisterwort = new Ingredient(
+    name: "Blisterwort",
+    effects:
+        new Set.from([damageStamina, fortifySmithing, frenzy, restoreHealth]),
+    value: 12);
 final blueButterflyWing = new Ingredient(
-    "Blue Butterfly Wing",
-    new Set.from([
+    name: "Blue Butterfly Wing",
+    effects: new Set.from([
       damageMagickaRegen,
       damageStamina,
       fortifyConjuration,
       fortifyEnchanting
-    ]));
-final blueDartwing = new Ingredient("Blue Dartwing",
-    new Set.from([fear, fortifyPickpocket, resistShock, restoreHealth]));
+    ]),
+    value: 2);
+final blueDartwing = new Ingredient(
+    name: "Blue Dartwing",
+    effects:
+        new Set.from([fear, fortifyPickpocket, resistShock, restoreHealth]),
+    value: 1);
 final blueMountainFlower = new Ingredient(
-    "Blue Mountain Flower",
-    new Set.from([
-      damageMagickaRegen,
-      fortifyConjuration,
-      fortifyHealth,
-      restoreHealth
-    ]));
-final boarTusk = new Ingredient("Boar Tusk",
-    new Set.from([fortifyBlock, fortifyHealth, fortifyStamina, frenzy]));
+    name: "Blue Mountain Flower",
+    effects: new Set.from(
+        [damageMagickaRegen, fortifyConjuration, fortifyHealth, restoreHealth]),
+    value: 2);
+final boarTusk = new Ingredient(
+    name: "Boar Tusk",
+    effects:
+        new Set.from([fortifyBlock, fortifyHealth, fortifyStamina, frenzy]),
+    value: 20);
 final boneMeal = new Ingredient(
-    "Bone Meal",
-    new Set.from(
-        [damageStamina, fortifyConjuration, ravageStamina, resistFire]));
-final briarHeart = new Ingredient("Briar Heart",
-    new Set.from([fortifyBlock, fortifyMagicka, paralysis, restoreMagicka]));
+    name: "Bone Meal",
+    effects: new Set.from(
+        [damageStamina, fortifyConjuration, ravageStamina, resistFire]),
+    value: 5);
+final briarHeart = new Ingredient(
+    name: "Briar Heart",
+    effects:
+        new Set.from([fortifyBlock, fortifyMagicka, paralysis, restoreMagicka]),
+    value: 20);
 final burntSprigganWood = new Ingredient(
-    "Burnt Spriggan Wood",
-    new Set.from(
-        [damageMagickaRegen, fortifyAlteration, slow, weaknessToFire]));
+    name: "Burnt Spriggan Wood",
+    effects: new Set.from(
+        [damageMagickaRegen, fortifyAlteration, slow, weaknessToFire]),
+    value: 20);
 final butterflyWing = new Ingredient(
-    "Butterfly Wing",
-    new Set.from(
-        [damageMagicka, fortifyBarter, lingeringDamageStamina, restoreHealth]));
+    name: "Butterfly Wing",
+    effects: new Set.from(
+        [damageMagicka, fortifyBarter, lingeringDamageStamina, restoreHealth]),
+    value: 3);
 final canisRoot = new Ingredient(
-    "Canis Root",
-    new Set.from(
-        [damageStamina, fortifyMarksman, fortifyOneHanded, paralysis]));
+    name: "Canis Root",
+    effects: new Set.from(
+        [damageStamina, fortifyMarksman, fortifyOneHanded, paralysis]),
+    value: 5);
 final charredSkeeverHide = new Ingredient(
-    "Charred Skeever Hide",
-    new Set.from([cureDisease, resistPoison, restoreHealth, restoreStamina]),
-    {cureDisease:0.36});
+    name: "Charred Skeever Hide",
+    effects: new Set.from(
+        [cureDisease, resistPoison, restoreHealth, restoreStamina]),
+    value: 1,
+    multipliers: {cureDisease: 0.36});
 final chaurusEggs = new Ingredient(
-    "Chaurus Eggs",
-    new Set.from(
-        [damageMagicka, fortifyStamina, invisibility, weaknessToPoison]));
+    name: "Chaurus Eggs",
+    effects: new Set.from(
+        [damageMagicka, fortifyStamina, invisibility, weaknessToPoison]),
+    value: 10);
 final chaurusHunterAntennae = new Ingredient(
-    "Chaurus Hunter Antennae",
-    new Set.from([
+    name: "Chaurus Hunter Antennae",
+    effects: new Set.from([
       damageMagickaRegen,
       damageStamina,
       fortifyConjuration,
       fortifyEnchanting
-    ]));
+    ]),
+    value: 2);
 final chickensEgg = new Ingredient(
-    "Chicken's Egg",
-    new Set.from([
+    name: "Chicken's Egg",
+    effects: new Set.from([
       damageMagickaRegen,
       lingeringDamageStamina,
       resistMagic,
       waterbreathing
-    ]));
+    ]),
+    value: 2);
 final creepCluster = new Ingredient(
-    "Creep Cluster",
-    new Set.from([
+    name: "Creep Cluster",
+    effects: new Set.from([
       damageStaminaRegen,
       fortifyCarryWeight,
       restoreMagicka,
       weaknessToMagic
-    ]));
-final crimsonNirnroot = new Ingredient("Crimson Nirnroot",
-    new Set.from([damageHealth, damageStamina, invisibility, resistMagic]));
-final cyrodilicSpadetail = new Ingredient("Cyrodilic Spadetail",
-    new Set.from([damageStamina, fear, fortifyRestoration, ravageHealth]));
-final daedraHeart = new Ingredient("Daedra Heart",
-    new Set.from([damageMagicka, damageStaminaRegen, fear, restoreHealth]));
+    ]),
+    value: 1);
+final crimsonNirnroot = new Ingredient(
+    name: "Crimson Nirnroot",
+    effects:
+        new Set.from([damageHealth, damageStamina, invisibility, resistMagic]),
+    value: 10);
+final cyrodilicSpadetail = new Ingredient(
+    name: "Cyrodilic Spadetail",
+    effects:
+        new Set.from([damageStamina, fear, fortifyRestoration, ravageHealth]),
+    value: 15);
+final daedraHeart = new Ingredient(
+    name: "Daedra Heart",
+    effects:
+        new Set.from([damageMagicka, damageStaminaRegen, fear, restoreHealth]),
+    value: 250);
 final deathbell = new Ingredient(
-    "Deathbell",
-    new Set.from([damageHealth, ravageStamina, slow, weaknessToPoison]),
-    {ravageStamina: 2.1});
+    name: "Deathbell",
+    effects:
+        new Set.from([damageHealth, ravageStamina, slow, weaknessToPoison]),
+    value: 4,
+    multipliers: {ravageStamina: 2.1});
 final dragonsTongue = new Ingredient(
-    "Dragon's Tongue",
-    new Set.from(
-        [fortifyBarter, fortifyIllusion, fortifyTwoHanded, resistFire]));
+    name: "Dragon's Tongue",
+    effects: new Set.from(
+        [fortifyBarter, fortifyIllusion, fortifyTwoHanded, resistFire]),
+    value: 5);
 final dwarvenOil = new Ingredient(
-    "Dwarven Oil",
-    new Set.from(
-        [fortifyIllusion, regenerateMagicka, restoreMagicka, weaknessToMagic]));
+    name: "Dwarven Oil",
+    effects: new Set.from(
+        [fortifyIllusion, regenerateMagicka, restoreMagicka, weaknessToMagic]),
+    value: 15);
 final ectoplasm = new Ingredient(
-    "Ectoplasm",
-    new Set.from(
-        [damageHealth, fortifyDestruction, fortifyMagicka, restoreMagicka]));
+    name: "Ectoplasm",
+    effects: new Set.from(
+        [damageHealth, fortifyDestruction, fortifyMagicka, restoreMagicka]),
+    value: 25);
 final elvesEar = new Ingredient(
-    "Elves Ear",
-    new Set.from(
-        [fortifyMarksman, resistFire, restoreMagicka, weaknessToFrost]));
+    name: "Elves Ear",
+    effects: new Set.from(
+        [fortifyMarksman, resistFire, restoreMagicka, weaknessToFrost]),
+    value: 10);
 final emperorParasolMoss = new Ingredient(
-    "Emperor Parasol Moss",
-    new Set.from(
-        [damageHealth, fortifyMagicka, fortifyTwoHanded, regenerateHealth]));
-final eyeOfSabreCat = new Ingredient("Eye of Sabre Cat",
-    new Set.from([damageMagicka, ravageHealth, restoreHealth, restoreStamina]));
-final falmerEar = new Ingredient("Falmer Ear",
-    new Set.from([damageHealth, fortifyLockpicking, frenzy, resistPoison]));
-final felsaadTernFeathers = new Ingredient("Felsaad Tern Feathers",
-    new Set.from([cureDisease, fortifyLightArmor, resistMagic, restoreHealth]));
+    name: "Emperor Parasol Moss",
+    effects: new Set.from(
+        [damageHealth, fortifyMagicka, fortifyTwoHanded, regenerateHealth]),
+    value: 1);
+final eyeOfSabreCat = new Ingredient(
+    name: "Eye of Sabre Cat",
+    effects: new Set.from(
+        [damageMagicka, ravageHealth, restoreHealth, restoreStamina]),
+    value: 2);
+final falmerEar = new Ingredient(
+    name: "Falmer Ear",
+    effects:
+        new Set.from([damageHealth, fortifyLockpicking, frenzy, resistPoison]),
+    value: 10);
+final felsaadTernFeathers = new Ingredient(
+    name: "Felsaad Tern Feathers",
+    effects: new Set.from(
+        [cureDisease, fortifyLightArmor, resistMagic, restoreHealth]),
+    value: 15);
 final fireSalts = new Ingredient(
-    "Fire Salts",
-    new Set.from(
-        [regenerateMagicka, resistFire, restoreMagicka, weaknessToFrost]));
-final flyAmanita = new Ingredient("Fly Amanita",
-    new Set.from([fortifyTwoHanded, frenzy, regenerateStamina, resistFire]));
+    name: "Fire Salts",
+    effects: new Set.from(
+        [regenerateMagicka, resistFire, restoreMagicka, weaknessToFrost]),
+    value: 50);
+final flyAmanita = new Ingredient(
+    name: "Fly Amanita",
+    effects:
+        new Set.from([fortifyTwoHanded, frenzy, regenerateStamina, resistFire]),
+    value: 2);
 final frostMirriam = new Ingredient(
-    "Frost Mirriam",
-    new Set.from(
-        [damageStaminaRegen, fortifySneak, ravageMagicka, resistFrost]));
+    name: "Frost Mirriam",
+    effects: new Set.from(
+        [damageStaminaRegen, fortifySneak, ravageMagicka, resistFrost]),
+    value: 1);
 final frostSalts = new Ingredient(
-    "Frost Salts",
-    new Set.from(
-        [fortifyConjuration, resistFrost, restoreMagicka, weaknessToFire]));
+    name: "Frost Salts",
+    effects: new Set.from(
+        [fortifyConjuration, resistFrost, restoreMagicka, weaknessToFire]),
+    value: 100);
 final garlic = new Ingredient(
-    "Garlic",
-    new Set.from(
-        [fortifyStamina, regenerateHealth, regenerateMagicka, resistPoison]));
+    name: "Garlic",
+    effects: new Set.from(
+        [fortifyStamina, regenerateHealth, regenerateMagicka, resistPoison]),
+    value: 1);
 final giantLichen = new Ingredient(
-    "Giant Lichen",
-    new Set.from(
-        [ravageHealth, restoreMagicka, weaknessToPoison, weaknessToShock]));
+    name: "Giant Lichen",
+    effects: new Set.from(
+        [ravageHealth, restoreMagicka, weaknessToPoison, weaknessToShock]),
+    value: 5);
 final giantsToe = new Ingredient(
-  "Giant's Toe",
-  new Set.from([
+  name: "Giant's Toe",
+  effects: new Set.from([
     damageStamina,
     damageStaminaRegen,
     fortifyCarryWeight,
     fortifyHealth,
   ]),
-  {fortifyHealth: 5.9},
+  value: 20,
+  multipliers: {fortifyHealth: 5.9},
 );
-final gleamblossom = new Ingredient("Gleamblossom",
-    new Set.from([fear, paralysis, regenerateHealth, resistMagic]));
+final gleamblossom = new Ingredient(
+    name: "Gleamblossom",
+    effects: new Set.from([fear, paralysis, regenerateHealth, resistMagic]),
+    value: 5);
 final glowDust = new Ingredient(
-    "Glow Dust",
-    new Set.from(
-        [damageMagicka, damageMagickaRegen, fortifyDestruction, resistShock]));
+    name: "Glow Dust",
+    effects: new Set.from(
+        [damageMagicka, damageMagickaRegen, fortifyDestruction, resistShock]),
+    value: 20);
 final glowingMushroom = new Ingredient(
-    "Glowing Mushroom",
-    new Set.from(
-        [fortifyDestruction, fortifyHealth, fortifySmithing, resistShock]));
+    name: "Glowing Mushroom",
+    effects: new Set.from(
+        [fortifyDestruction, fortifyHealth, fortifySmithing, resistShock]),
+    value: 5);
 final grassPod = new Ingredient(
-    "Grass Pod",
-    new Set.from(
-        [fortifyAlteration, ravageMagicka, resistPoison, restoreMagicka]));
+    name: "Grass Pod",
+    effects: new Set.from(
+        [fortifyAlteration, ravageMagicka, resistPoison, restoreMagicka]),
+    value: 1);
 final hagravenClaw = new Ingredient(
-    "Hagraven Claw",
-    new Set.from([
+    name: "Hagraven Claw",
+    effects: new Set.from([
       fortifyBarter,
       fortifyEnchanting,
       lingeringDamageMagicka,
       resistMagic
-    ]));
-final hagravenFeathers = new Ingredient("Hagraven Feathers",
-    new Set.from([damageMagicka, fortifyConjuration, frenzy, weaknessToShock]));
+    ]),
+    value: 20);
+final hagravenFeathers = new Ingredient(
+    name: "Hagraven Feathers",
+    effects: new Set.from(
+        [damageMagicka, fortifyConjuration, frenzy, weaknessToShock]),
+    value: 20);
 final hangingMoss = new Ingredient(
-    "Hanging Moss",
-    new Set.from(
-        [damageMagicka, damageMagickaRegen, fortifyHealth, fortifyOneHanded]));
+    name: "Hanging Moss",
+    effects: new Set.from(
+        [damageMagicka, damageMagickaRegen, fortifyHealth, fortifyOneHanded]),
+    value: 1);
 final hawkBeak = new Ingredient(
-    "Hawk Beak",
-    new Set.from(
-        [fortifyCarryWeight, resistFrost, resistShock, restoreStamina]));
+    name: "Hawk Beak",
+    effects: new Set.from(
+        [fortifyCarryWeight, resistFrost, resistShock, restoreStamina]),
+    value: 15);
 final hawkFeathers = new Ingredient(
-    "Hawk Feathers",
-    new Set.from(
+    name: "Hawk Feathers",
+    effects: new Set.from(
         [cureDisease, fortifyLightArmor, fortifyOneHanded, fortifySneak]),
-    {cureDisease: 0.36});
+    value: 15,
+    multipliers: {cureDisease: 0.36});
 final hawksEgg = new Ingredient(
-    "Hawk's Egg",
-    new Set.from([
+    name: "Hawk's Egg",
+    effects: new Set.from([
       damageMagickaRegen,
       lingeringDamageStamina,
       resistMagic,
       waterbreathing
-    ]));
+    ]),
+    value: 5);
 final histcarp = new Ingredient(
-    "Histcarp",
-    new Set.from(
-        [damageStaminaRegen, fortifyMagicka, restoreStamina, waterbreathing]));
+    name: "Histcarp",
+    effects: new Set.from(
+        [damageStaminaRegen, fortifyMagicka, restoreStamina, waterbreathing]),
+    value: 6);
 final honeycomb = new Ingredient(
-    "Honeycomb",
-    new Set.from(
-        [fortifyBlock, fortifyLightArmor, ravageStamina, restoreStamina]));
-final humanFlesh = new Ingredient("Human Flesh",
-    new Set.from([damageHealth, fortifySneak, paralysis, restoreMagicka]));
-final humanHeart = new Ingredient("Human Heart",
-    new Set.from([damageHealth, damageMagicka, damageMagickaRegen, frenzy]));
+    name: "Honeycomb",
+    effects: new Set.from(
+        [fortifyBlock, fortifyLightArmor, ravageStamina, restoreStamina]),
+    value: 5);
+final humanFlesh = new Ingredient(
+    name: "Human Flesh",
+    effects:
+        new Set.from([damageHealth, fortifySneak, paralysis, restoreMagicka]),
+    value: 1);
+final humanHeart = new Ingredient(
+    name: "Human Heart",
+    effects:
+        new Set.from([damageHealth, damageMagicka, damageMagickaRegen, frenzy]),
+    value: 0);
 final iceWraithTeeth = new Ingredient(
-    "Ice Wraith Teeth",
-    new Set.from(
-        [fortifyHeavyArmor, invisibility, weaknessToFire, weaknessToFrost]));
+    name: "Ice Wraith Teeth",
+    effects: new Set.from(
+        [fortifyHeavyArmor, invisibility, weaknessToFire, weaknessToFrost]),
+    value: 30);
 final impStool = new Ingredient(
-    "Imp Stool",
-    new Set.from(
-        [damageHealth, lingeringDamageHealth, paralysis, restoreHealth]));
+    name: "Imp Stool",
+    effects: new Set.from(
+        [damageHealth, lingeringDamageHealth, paralysis, restoreHealth]),
+    value: 0);
 final jarrinRoot = new Ingredient(
-    "Jarrin Root",
-    new Set.from(
-        [damageHealth, damageMagicka, damageMagickaRegen, damageStamina]));
+    name: "Jarrin Root",
+    effects: new Set.from(
+        [damageHealth, damageMagicka, damageMagickaRegen, damageStamina]),
+    value: 10);
 final jazbayGrapes = new Ingredient(
-    "Jazbay Grapes",
-    new Set.from(
-        [fortifyMagicka, ravageHealth, regenerateMagicka, weaknessToMagic]));
+    name: "Jazbay Grapes",
+    effects: new Set.from(
+        [fortifyMagicka, ravageHealth, regenerateMagicka, weaknessToMagic]),
+    value: 1);
 final juniperBerries = new Ingredient(
-    "Juniper Berries",
-    new Set.from([
+    name: "Juniper Berries",
+    effects: new Set.from([
       damageStaminaRegen,
       fortifyMarksman,
       regenerateHealth,
       weaknessToFire
-    ]));
-final largeAntlers = new Ingredient("Large Antlers",
-    new Set.from([damageStaminaRegen, fortifyStamina, restoreStamina, slow]));
+    ]),
+    value: 1);
+final largeAntlers = new Ingredient(
+    name: "Large Antlers",
+    effects: new Set.from(
+        [damageStaminaRegen, fortifyStamina, restoreStamina, slow]),
+    value: 2);
 final lavender = new Ingredient(
-    "Lavender",
-    new Set.from(
-        [fortifyConjuration, fortifyStamina, ravageMagicka, resistMagic]));
+    name: "Lavender",
+    effects: new Set.from(
+        [fortifyConjuration, fortifyStamina, ravageMagicka, resistMagic]),
+    value: 1);
 final lunaMothWing = new Ingredient(
-    "Luna Moth Wing",
-    new Set.from(
-        [damageMagicka, fortifyLightArmor, invisibility, regenerateHealth]));
+    name: "Luna Moth Wing",
+    effects: new Set.from(
+        [damageMagicka, fortifyLightArmor, invisibility, regenerateHealth]),
+    value: 5);
 final moonSugar = new Ingredient(
-    "Moon Sugar",
-    new Set.from(
-        [regenerateMagicka, resistFrost, restoreMagicka, weaknessToFire]));
+    name: "Moon Sugar",
+    effects: new Set.from(
+        [regenerateMagicka, resistFrost, restoreMagicka, weaknessToFire]),
+    value: 50);
 final moraTapinella = new Ingredient(
-    "Mora Tapinella",
-    new Set.from([
+    name: "Mora Tapinella",
+    effects: new Set.from([
       fortifyIllusion,
       lingeringDamageHealth,
       regenerateStamina,
       restoreMagicka
-    ]));
-final mudcrabChitin = new Ingredient("Mudcrab Chitin",
-    new Set.from([cureDisease, resistFire, resistPoison, restoreStamina]));
-final namirasRot = new Ingredient("Namira's Rot",
-    new Set.from([damageMagicka, fear, fortifyLockpicking, regenerateHealth]));
-final netchJelly = new Ingredient("Netch Jelly",
-    new Set.from([fear, fortifyCarryWeight, paralysis, restoreStamina]));
+    ]),
+    value: 4);
+final mudcrabChitin = new Ingredient(
+    name: "Mudcrab Chitin",
+    effects:
+        new Set.from([cureDisease, resistFire, resistPoison, restoreStamina]),
+    value: 2);
+final namirasRot = new Ingredient(
+    name: "Namira's Rot",
+    effects: new Set.from(
+        [damageMagicka, fear, fortifyLockpicking, regenerateHealth]),
+    value: 0);
+final netchJelly = new Ingredient(
+    name: "Netch Jelly",
+    effects:
+        new Set.from([fear, fortifyCarryWeight, paralysis, restoreStamina]),
+    value: 20);
 final nightshade = new Ingredient(
-    "Nightshade",
-    new Set.from([
+    name: "Nightshade",
+    effects: new Set.from([
       damageHealth,
       damageMagickaRegen,
       fortifyDestruction,
       lingeringDamageStamina
-    ]));
+    ]),
+    value: 8);
 final nirnroot = new Ingredient(
-    "Nirnroot",
-    new Set.from([damageHealth, damageStamina, invisibility, resistMagic]),
-    {damageHealth: 12.6});
+    name: "Nirnroot",
+    effects:
+        new Set.from([damageHealth, damageStamina, invisibility, resistMagic]),
+    value: 10,
+    multipliers: {damageHealth: 12.6});
 final nordicBarnacle = new Ingredient(
-    "Nordic Barnacle",
-    new Set.from(
-        [damageMagicka, fortifyPickpocket, regenerateHealth, waterbreathing]));
+    name: "Nordic Barnacle",
+    effects: new Set.from(
+        [damageMagicka, fortifyPickpocket, regenerateHealth, waterbreathing]),
+    value: 5);
 final orangeDartwing = new Ingredient(
-    "Orange Dartwing",
-    new Set.from([
+    name: "Orange Dartwing",
+    effects: new Set.from([
       fortifyPickpocket,
       lingeringDamageHealth,
       ravageMagicka,
       restoreStamina
-    ]));
-final pearl = new Ingredient("Pearl",
-    new Set.from([fortifyBlock, resistShock, restoreMagicka, restoreStamina]));
+    ]),
+    value: 1);
+final pearl = new Ingredient(
+    name: "Pearl",
+    effects: new Set.from(
+        [fortifyBlock, resistShock, restoreMagicka, restoreStamina]),
+    value: 2);
 final pineThrushEgg = new Ingredient(
-    "Pine Thrush Egg",
-    new Set.from(
-        [fortifyLockpicking, resistShock, restoreStamina, weaknessToPoison]));
-final poisonBloom = new Ingredient("Poison Bloom",
-    new Set.from([damageHealth, fear, fortifyCarryWeight, slow]));
-final powderedMammothTusk = new Ingredient("Powdered Mammoth Tusk",
-    new Set.from([fear, fortifySneak, restoreStamina, weaknessToFire]));
+    name: "Pine Thrush Egg",
+    effects: new Set.from(
+        [fortifyLockpicking, resistShock, restoreStamina, weaknessToPoison]),
+    value: 2);
+final poisonBloom = new Ingredient(
+    name: "Poison Bloom",
+    effects: new Set.from([damageHealth, fear, fortifyCarryWeight, slow]),
+    value: 5);
+final powderedMammothTusk = new Ingredient(
+    name: "Powdered Mammoth Tusk",
+    effects: new Set.from([fear, fortifySneak, restoreStamina, weaknessToFire]),
+    value: 2);
 final purpleMountainFlower = new Ingredient(
-    "Purple Mountain Flower",
-    new Set.from(
-        [fortifySneak, lingeringDamageMagicka, resistFrost, restoreStamina]));
+    name: "Purple Mountain Flower",
+    effects: new Set.from(
+        [fortifySneak, lingeringDamageMagicka, resistFrost, restoreStamina]),
+    value: 2);
 final redMountainFlower = new Ingredient(
-    "Red Mountain Flower",
-    new Set.from(
-        [damageHealth, fortifyMagicka, ravageMagicka, restoreMagicka]));
-final riverBetty = new Ingredient("River Betty",
-    new Set.from([damageHealth, fortifyAlteration, fortifyCarryWeight, slow]));
+    name: "Red Mountain Flower",
+    effects: new Set.from(
+        [damageHealth, fortifyMagicka, ravageMagicka, restoreMagicka]),
+    value: 2);
+final riverBetty = new Ingredient(
+    name: "River Betty",
+    effects: new Set.from(
+        [damageHealth, fortifyAlteration, fortifyCarryWeight, slow]),
+    value: 15);
 final rockWarblerEgg = new Ingredient(
-    "Rock Warbler Egg",
-    new Set.from(
-        [damageStamina, fortifyOneHanded, restoreHealth, weaknessToMagic]));
+    name: "Rock Warbler Egg",
+    effects: new Set.from(
+        [damageStamina, fortifyOneHanded, restoreHealth, weaknessToMagic]),
+    value: 2);
 final sabreCatTooth = new Ingredient(
-    "Sabre Cat Tooth",
-    new Set.from([
-      fortifyHeavyArmor,
-      fortifySmithing,
-      restoreStamina,
-      weaknessToPoison
-    ]));
+    name: "Sabre Cat Tooth",
+    effects: new Set.from(
+        [fortifyHeavyArmor, fortifySmithing, restoreStamina, weaknessToPoison]),
+    value: 2);
 final salmonRoe = new Ingredient(
-    "Salmon Roe",
-    new Set.from(
+    name: "Salmon Roe",
+    effects: new Set.from(
         [fortifyMagicka, regenerateMagicka, restoreStamina, waterbreathing]),
-    {waterbreathing: 15.4, fortifyMagicka: 1.05});
+    multipliers: {waterbreathing: 15.4, fortifyMagicka: 1.05},
+    value: 5);
 final saltPile = new Ingredient(
-    "Salt Pile",
-    new Set.from(
-        [fortifyRestoration, regenerateMagicka, slow, weaknessToMagic]));
+    name: "Salt Pile",
+    effects: new Set.from(
+        [fortifyRestoration, regenerateMagicka, slow, weaknessToMagic]),
+    value: 2);
 final scalyPholiota = new Ingredient(
-    "Scaly Pholiota",
-    new Set.from([
+    name: "Scaly Pholiota",
+    effects: new Set.from([
       fortifyCarryWeight,
       fortifyIllusion,
       regenerateStamina,
       weaknessToMagic
-    ]));
+    ]),
+    value: 4);
 final scathecraw = new Ingredient(
-    "Scathecraw",
-    new Set.from(
-        [lingeringDamageHealth, ravageHealth, ravageMagicka, ravageStamina]));
+    name: "Scathecraw",
+    effects: new Set.from(
+        [lingeringDamageHealth, ravageHealth, ravageMagicka, ravageStamina]),
+    value: 1);
 final silversidePerch = new Ingredient(
-    "Silverside Perch",
-    new Set.from(
-        [damageStaminaRegen, ravageHealth, resistFrost, restoreStamina]));
+    name: "Silverside Perch",
+    effects: new Set.from(
+        [damageStaminaRegen, ravageHealth, resistFrost, restoreStamina]),
+    value: 15);
 final skeeverTail = new Ingredient(
-    "Skeever Tail",
-    new Set.from(
-        [damageHealth, damageStaminaRegen, fortifyLightArmor, ravageHealth]));
+    name: "Skeever Tail",
+    effects: new Set.from(
+        [damageHealth, damageStaminaRegen, fortifyLightArmor, ravageHealth]),
+    value: 3);
 final slaughterfishEgg = new Ingredient(
-    "Slaughterfish Egg",
-    new Set.from([
+    name: "Slaughterfish Egg",
+    effects: new Set.from([
       fortifyPickpocket,
       fortifyStamina,
       lingeringDamageHealth,
       resistPoison
-    ]));
+    ]),
+    value: 3);
 final slaughterfishScales = new Ingredient(
-    "Slaughterfish Scales",
-    new Set.from(
-        [fortifyBlock, fortifyHeavyArmor, lingeringDamageHealth, resistFrost]));
+    name: "Slaughterfish Scales",
+    effects: new Set.from(
+        [fortifyBlock, fortifyHeavyArmor, lingeringDamageHealth, resistFrost]),
+    value: 3);
 final smallAntlers = new Ingredient(
-    "Small Antlers",
-    new Set.from([
+    name: "Small Antlers",
+    effects: new Set.from([
       damageHealth,
       fortifyRestoration,
       lingeringDamageStamina,
       weaknessToPoison
-    ]));
+    ]),
+    value: 2);
 final smallPearl = new Ingredient(
-    "Small Pearl",
-    new Set.from(
-        [fortifyOneHanded, fortifyRestoration, resistFrost, restoreStamina]));
-final snowberries = new Ingredient("Snowberries",
-    new Set.from([fortifyEnchanting, resistFire, resistFrost, resistShock]));
+    name: "Small Pearl",
+    effects: new Set.from(
+        [fortifyOneHanded, fortifyRestoration, resistFrost, restoreStamina]),
+    value: 2);
+final snowberries = new Ingredient(
+    name: "Snowberries",
+    effects:
+        new Set.from([fortifyEnchanting, resistFire, resistFrost, resistShock]),
+    value: 4);
 final spawnAsh = new Ingredient(
-    "Spawn Ash",
-    new Set.from(
-        [fortifyEnchanting, ravageMagicka, ravageStamina, resistFire]));
+    name: "Spawn Ash",
+    effects: new Set.from(
+        [fortifyEnchanting, ravageMagicka, ravageStamina, resistFire]),
+    value: 20);
 final spiderEgg = new Ingredient(
-    "Spider Egg",
-    new Set.from([
+    name: "Spider Egg",
+    effects: new Set.from([
       damageMagickaRegen,
       damageStamina,
       fortifyLockpicking,
       fortifyMarksman
-    ]));
+    ]),
+    value: 5);
 final sprigganSap = new Ingredient(
-    "Spriggan Sap",
-    new Set.from([
+    name: "Spriggan Sap",
+    effects: new Set.from([
       damageMagickaRegen,
       fortifyAlteration,
       fortifyEnchanting,
       fortifySmithing
-    ]));
+    ]),
+    value: 15);
 final swampFungalPod = new Ingredient(
-    "Swamp Fungal Pod",
-    new Set.from(
-        [lingeringDamageMagicka, paralysis, resistShock, restoreHealth]));
+    name: "Swamp Fungal Pod",
+    effects: new Set.from(
+        [lingeringDamageMagicka, paralysis, resistShock, restoreHealth]),
+    value: 5);
 final taproot = new Ingredient(
-    "Taproot",
-    new Set.from(
-        [fortifyIllusion, regenerateMagicka, restoreMagicka, weaknessToMagic]));
+    name: "Taproot",
+    effects: new Set.from(
+        [fortifyIllusion, regenerateMagicka, restoreMagicka, weaknessToMagic]),
+    value: 15);
 final thistleBranch = new Ingredient(
-    "Thistle Branch",
-    new Set.from(
-        [fortifyHeavyArmor, ravageStamina, resistFrost, resistPoison]));
+    name: "Thistle Branch",
+    effects: new Set.from(
+        [fortifyHeavyArmor, ravageStamina, resistFrost, resistPoison]),
+    value: 1);
 final torchbugThorax = new Ingredient(
-    "Torchbug Thorax",
-    new Set.from([
+    name: "Torchbug Thorax",
+    effects: new Set.from([
       fortifyStamina,
       lingeringDamageMagicka,
       restoreStamina,
       weaknessToMagic
-    ]));
-final tramaRoot = new Ingredient("Trama Root",
-    new Set.from([damageMagicka, fortifyCarryWeight, slow, weaknessToShock]));
-final trollFat = new Ingredient("Troll Fat",
-    new Set.from([damageHealth, fortifyTwoHanded, frenzy, resistPoison]));
-final tundraCotton = new Ingredient("Tundra Cotton",
-    new Set.from([fortifyBarter, fortifyBlock, fortifyMagicka, resistMagic]));
+    ]),
+    value: 1);
+final tramaRoot = new Ingredient(
+    name: "Trama Root",
+    effects: new Set.from(
+        [damageMagicka, fortifyCarryWeight, slow, weaknessToShock]),
+    value: 1);
+final trollFat = new Ingredient(
+    name: "Troll Fat",
+    effects:
+        new Set.from([damageHealth, fortifyTwoHanded, frenzy, resistPoison]),
+    value: 1);
+final tundraCotton = new Ingredient(
+    name: "Tundra Cotton",
+    effects: new Set.from(
+        [fortifyBarter, fortifyBlock, fortifyMagicka, resistMagic]),
+    value: 1);
 final vampireDust = new Ingredient(
-    "Vampire Dust",
-    new Set.from(
-        [cureDisease, invisibility, regenerateHealth, restoreMagicka]));
-final voidSalts = new Ingredient("Void Salts",
-    new Set.from([damageHealth, fortifyMagicka, resistMagic, weaknessToShock]));
+    name: "Vampire Dust",
+    effects: new Set.from(
+        [cureDisease, invisibility, regenerateHealth, restoreMagicka]),
+    value: 25);
+final voidSalts = new Ingredient(
+    name: "Void Salts",
+    effects: new Set.from(
+        [damageHealth, fortifyMagicka, resistMagic, weaknessToShock]),
+    value: 125);
 final wheat = new Ingredient(
-    "Wheat",
-    new Set.from([
+    name: "Wheat",
+    effects: new Set.from([
       damageStaminaRegen,
       fortifyHealth,
       lingeringDamageMagicka,
       restoreHealth
-    ]));
+    ]),
+    value: 5);
 final whiteCap = new Ingredient(
-    "White Cap",
-    new Set.from(
-        [fortifyHeavyArmor, ravageMagicka, restoreMagicka, weaknessToFrost]));
+    name: "White Cap",
+    effects: new Set.from(
+        [fortifyHeavyArmor, ravageMagicka, restoreMagicka, weaknessToFrost]),
+    value: 0);
 final wispWrappings = new Ingredient(
-    "Wisp Wrappings",
-    new Set.from(
-        [fortifyCarryWeight, fortifyDestruction, resistMagic, restoreStamina]));
+    name: "Wisp Wrappings",
+    effects: new Set.from(
+        [fortifyCarryWeight, fortifyDestruction, resistMagic, restoreStamina]),
+    value: 2);
 final yellowMountainFlower = new Ingredient(
-    "Yellow Mountain Flower",
-    new Set.from(
-        [damageStaminaRegen, fortifyHealth, fortifyRestoration, resistPoison]));
+    name: "Yellow Mountain Flower",
+    effects: new Set.from(
+        [damageStaminaRegen, fortifyHealth, fortifyRestoration, resistPoison]),
+    value: 2);
 
 final allIngredients = [
   abeceanLongfin,
