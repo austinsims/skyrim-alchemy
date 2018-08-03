@@ -1,8 +1,5 @@
 # skyrim_alchemy
 
-A new Flutter project.
+Alchemy calculator for Skyrim made with Flutter. Helps create profitable potions to make money. Tested on Android, might work on iOS too.
 
-## Getting Started
-
-For help getting started with Flutter, view our online
-[documentation](https://flutter.io/).
+![demo gif](https://raw.githubusercontent.com/austinsims/skyrim-alchemy/master/demo.gif)
